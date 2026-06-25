@@ -1,0 +1,18 @@
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Claude Code local working dir (per-project, not for distribution)
+.claude/
+
+# Distributable zip lives OUTSIDE this repo (use GitLab Releases).
+# Never commit binaries into the source tree.
+*.zip
