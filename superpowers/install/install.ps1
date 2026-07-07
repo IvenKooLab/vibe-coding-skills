@@ -26,11 +26,11 @@ $SrcCommands = Join-Path $RepoRoot "commands"
 $Snippet     = Join-Path $RepoRoot "bootstrap\CLAUDE.md.snippet"
 $QoderRule   = Join-Path $RepoRoot "bootstrap\qoder-rule.md"
 
-$Begin = "<!-- superpower-sinosafe:begin -->"
-$End   = "<!-- superpower-sinosafe:end -->"
+$Begin = "<!-- superpowers-sinosafe:begin -->"
+$End   = "<!-- superpowers-sinosafe:end -->"
 
 $SkillNames = @(
-  "superpower",
+  "superpowers",
   "brainstorming",
   "writing-plans",
   "test-driven-development",
@@ -78,10 +78,10 @@ function Install-Claude {
     Step { Remove-Item -Recurse -Force $target -ErrorAction SilentlyContinue }
     Step { Copy-Item -Recurse -Force (Join-Path $SrcSkills $s) $target }
   }
-  # /superpower slash command (Claude Code only; Qoder uses the superpower skill)
+  # /superpowers slash command (Claude Code only; Qoder uses the superpowers skill)
   $cmdsDir = Join-Path $DestRoot "commands"
   if (-not $DryRun) { New-Item -ItemType Directory -Force -Path $cmdsDir | Out-Null }
-  Step { Copy-Item -Force (Join-Path $SrcCommands "superpower.md") (Join-Path $cmdsDir "superpower.md") }
+  Step { Copy-Item -Force (Join-Path $SrcCommands "superpowers.md") (Join-Path $cmdsDir "superpowers.md") }
   if ($Project -ne "") {
     Inject-Block -File (Join-Path $Project "CLAUDE.md")
   } else {
@@ -100,7 +100,7 @@ function Install-Qoder {
     Step { Remove-Item -Recurse -Force $target -ErrorAction SilentlyContinue }
     Step { Copy-Item -Recurse -Force (Join-Path $SrcSkills $s) $target }
   }
-  Step { Copy-Item -Force $QoderRule (Join-Path $rulesDir "superpower-sinosafe.md") }
+  Step { Copy-Item -Force $QoderRule (Join-Path $rulesDir "superpowers-sinosafe.md") }
 }
 
 function Do-Uninstall {
@@ -108,7 +108,7 @@ function Do-Uninstall {
     $cs = Join-Path $Project ".claude\skills"
     Write-Host "===> Uninstall Claude Code (project): $cs"
     foreach ($s in $SkillNames) { Step { Remove-Item -Recurse -Force (Join-Path $cs $s) -ErrorAction SilentlyContinue } }
-    Step { Remove-Item -Force (Join-Path $Project ".claude\commands\superpower.md") -ErrorAction SilentlyContinue }
+    Step { Remove-Item -Force (Join-Path $Project ".claude\commands\superpowers.md") -ErrorAction SilentlyContinue }
     $cmd = Join-Path $Project "CLAUDE.md"
     if (Test-Path $cmd) {
       $rest = Remove-BlockFromText -Text (Get-Content -LiteralPath $cmd -Raw -Encoding UTF8)
@@ -117,13 +117,13 @@ function Do-Uninstall {
     if ($WithQoder) {
       Write-Host "===> Uninstall Qoder (project): $Project\.qoder"
       foreach ($s in $SkillNames) { Step { Remove-Item -Recurse -Force (Join-Path $Project ".qoder\skills\$s") -ErrorAction SilentlyContinue } }
-      Step { Remove-Item -Force (Join-Path $Project ".qoder\rules\superpower-sinosafe.md") -ErrorAction SilentlyContinue }
+      Step { Remove-Item -Force (Join-Path $Project ".qoder\rules\superpowers-sinosafe.md") -ErrorAction SilentlyContinue }
     }
   } else {
     $cs = Join-Path $HOME ".claude\skills"
     Write-Host "===> Uninstall Claude Code (global): $cs"
     foreach ($s in $SkillNames) { Step { Remove-Item -Recurse -Force (Join-Path $cs $s) -ErrorAction SilentlyContinue } }
-    Step { Remove-Item -Force (Join-Path $HOME ".claude\commands\superpower.md") -ErrorAction SilentlyContinue }
+    Step { Remove-Item -Force (Join-Path $HOME ".claude\commands\superpowers.md") -ErrorAction SilentlyContinue }
     Write-Host "    (global mode: CLAUDE.md not touched)"
   }
   Write-Host "Uninstall done."
@@ -143,4 +143,4 @@ if ($Project -eq "") {
 Write-Host ""
 $suffix = if ($DryRun) { "(dry-run, nothing written)" } else { "" }
 Write-Host "Done. $suffix"
-Write-Host "Next: in Claude Code type /superpower (or in Qoder say 'enable superpowers'); all following tasks then follow the methodology."
+Write-Host "Next: in Claude Code type /superpowers (or in Qoder say 'enable superpowers'); all following tasks then follow the methodology."

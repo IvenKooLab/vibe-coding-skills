@@ -5,9 +5,9 @@ alwaysApply: true
 
 # Superpowers 工作方法论(华安增强版)
 
-> 此文件为 Qoder 引导规则,`trigger: always_on` 表示始终生效(所有智能会话与内联对话)。安装器会将其写入 `<项目>/.qoder/rules/superpower-sinosafe.md`。Skill 文件位于 `.qoder/skills/<name>/SKILL.md`,与 Claude Code 同构。
+> 此文件为 Qoder 引导规则,`trigger: always_on` 表示始终生效(所有智能会话与内联对话)。安装器会将其写入 `<项目>/.qoder/rules/superpowers-sinosafe.md`。Skill 文件位于 `.qoder/skills/<name>/SKILL.md`,与 Claude Code 同构。
 
-> **一键开关**:说一句**"启用 superpowers"**(或输入 `/superpower`),本会话后续所有任务自动按下文流程执行,无需逐个调用 skill。说"停用 superpowers"即可退出。
+> **一键开关**:说一句**"启用 superpowers"**(或输入 `/superpowers`),本会话后续所有任务自动按下文流程执行,无需逐个调用 skill。说"停用 superpowers"即可退出。
 
 ## 核心规则(始终生效)
 

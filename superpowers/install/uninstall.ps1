@@ -19,7 +19,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 $SkillNames = @(
-  "superpower",
+  "superpowers",
   "brainstorming",
   "writing-plans",
   "test-driven-development",
@@ -27,8 +27,8 @@ $SkillNames = @(
   "verification-before-completion"
 )
 
-$Begin = "<!-- superpower-sinosafe:begin -->"
-$End   = "<!-- superpower-sinosafe:end -->"
+$Begin = "<!-- superpowers-sinosafe:begin -->"
+$End   = "<!-- superpowers-sinosafe:end -->"
 
 function Step {
   param([scriptblock]$Action)
@@ -49,12 +49,12 @@ function Write-Utf8NoBom {
 if ($Project -eq "") {
   Write-Host "===> Uninstall global Claude Code: $HOME\.claude"
   foreach ($s in $SkillNames) { Step { Remove-Item -Recurse -Force (Join-Path $HOME ".claude\skills\$s") -ErrorAction SilentlyContinue } }
-  Step { Remove-Item -Force (Join-Path $HOME ".claude\commands\superpower.md") -ErrorAction SilentlyContinue }
+  Step { Remove-Item -Force (Join-Path $HOME ".claude\commands\superpowers.md") -ErrorAction SilentlyContinue }
   Write-Host "    (global mode: CLAUDE.md not touched)"
 } else {
   Write-Host "===> Uninstall project Claude Code: $Project\.claude"
   foreach ($s in $SkillNames) { Step { Remove-Item -Recurse -Force (Join-Path $Project ".claude\skills\$s") -ErrorAction SilentlyContinue } }
-  Step { Remove-Item -Force (Join-Path $Project ".claude\commands\superpower.md") -ErrorAction SilentlyContinue }
+  Step { Remove-Item -Force (Join-Path $Project ".claude\commands\superpowers.md") -ErrorAction SilentlyContinue }
   $cmd = Join-Path $Project "CLAUDE.md"
   if (Test-Path $cmd) {
     $rest = Remove-BlockFromText -Text (Get-Content -LiteralPath $cmd -Raw -Encoding UTF8)
@@ -63,7 +63,7 @@ if ($Project -eq "") {
   if ($WithQoder) {
     Write-Host "===> Uninstall Qoder: $Project\.qoder"
     foreach ($s in $SkillNames) { Step { Remove-Item -Recurse -Force (Join-Path $Project ".qoder\skills\$s") -ErrorAction SilentlyContinue } }
-    Step { Remove-Item -Force (Join-Path $Project ".qoder\rules\superpower-sinosafe.md") -ErrorAction SilentlyContinue }
+    Step { Remove-Item -Force (Join-Path $Project ".qoder\rules\superpowers-sinosafe.md") -ErrorAction SilentlyContinue }
   }
 }
 

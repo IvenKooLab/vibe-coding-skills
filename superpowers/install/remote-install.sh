@@ -13,7 +13,7 @@
 #   curl -fsSL <仓库>/raw/main/install/uninstall.sh | bash -s -- --project /path
 #
 # === 改这里:填你司内网 git 仓库地址 ===
-REPO_URL="${SUPERPOWERS_REPO:-https://gitlab.your-corp.com/sinosafe/superpower.git}"
+REPO_URL="${SUPERPOWERS_REPO:-https://gitlab.your-corp.com/sinosafe/superpowers.git}"
 BRANCH="${SUPERPOWERS_BRANCH:-main}"
 
 set -euo pipefail
@@ -27,4 +27,4 @@ echo "==> 运行安装器(透传参数:$*) ..."
 bash "$TMP/repo/install/install.sh" "$@"
 
 echo "==> 完成,临时目录已自动清理。"
-echo "在 Claude Code 里输入 /superpower 即可开始;卸载见 install/uninstall.sh。"
+echo "在 Claude Code 里输入 /superpowers 即可开始;卸载见 install/uninstall.sh。"

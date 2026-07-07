@@ -158,12 +158,12 @@ superpowers 的灵魂是"**哪怕只有很小的可能性,也要先查有没有�
 **Claude Code** —— 追加到项目根 `CLAUDE.md`(用哨兵注释包裹,便于精确卸载):
 
 ```
-<!-- superpower-sinosafe:begin -->
+<!-- superpowers-sinosafe:begin -->
 … 核心规则 + 可用 skills 索引表 …
-<!-- superpower-sinosafe:end -->
+<!-- superpowers-sinosafe:end -->
 ```
 
-**Qoder** —— 独立文件 `.qoder/rules/superpower-sinosafe.md`,frontmatter:
+**Qoder** —— 独立文件 `.qoder/rules/superpowers-sinosafe.md`,frontmatter:
 
 ```yaml
 ---
@@ -199,7 +199,7 @@ Qoder rule 的三种触发模式:`always_on`(始终生效,引导用此)、`model
 | **方法论层**(本套) | 怎么干(动手前澄清、完成前验证、TDD) | `brainstorming`、`writing-plans`、`test-driven-development`、`systematic-debugging`、`verification-before-completion` |
 | **框架知识层**(已有) | 用什么(Lina 框架、中间件) | `lina-framework-base`、`lina-redis`、`lina-mybatis-plus`、`lina-rabbitmq`、`lina-sso` 等 |
 
-**一键开关(总开关 skill)**:除了上面 5 个流程 skill,还有一个 `superpower` 开关 skill + Claude Code 的 `/superpower` 命令。用户说一句 `/superpower`/「启用 superpowers」,本会话后续所有任务自动按 5 步流程执行,不必逐个触发。开关 skill 本身遵循同样的编写规范(description 只写"何时用")。
+**一键开关(总开关 skill)**:除了上面 5 个流程 skill,还有一个 `superpowers` 开关 skill + Claude Code 的 `/superpowers` 命令。用户说一句 `/superpowers`/「启用 superpowers」,本会话后续所有任务自动按 5 步流程执行,不必逐个触发。开关 skill 本身遵循同样的编写规范(description 只写"何时用")。
 
 **协作方式**:方法论 skill 在"何时用/协作"小节用 `[[skill-name]]` 交叉引用框架 skill。例:`brainstorming` 涉及框架时指向 `[[lina-framework-base]]`;`systematic-debugging` 涉及中间件异常时指向 `[[lina-redis]]` / `[[lina-rabbitmq]]`。
 

@@ -10,7 +10,7 @@ $docx = $docxFile.FullName
 $skillsDir = Join-Path (Split-Path -Parent $here) "skills"
 if (-not (Test-Path $skillsDir)) { throw "skills dir not found: " + $skillsDir }
 
-$skillFiles = Get-ChildItem -LiteralPath $skillsDir -Recurse -Filter "SKILL.md" | Where-Object { $_.Directory.Name -ne "superpower" } | Sort-Object DirectoryName
+$skillFiles = Get-ChildItem -LiteralPath $skillsDir -Recurse -Filter "SKILL.md" | Where-Object { $_.Directory.Name -ne "superpowers" } | Sort-Object DirectoryName
 Write-Output ("Found " + $skillFiles.Count + " SKILL.md files; embedding into " + $docxFile.Name)
 
 $word = New-Object -ComObject Word.Application

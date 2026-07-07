@@ -39,8 +39,8 @@
 | 技能 | 定位 | 与 grill-me 的关系 |
 |---|---|---|
 | `grill-me`(本包) | 单点深度盘问 | 把一个计划问透,逐枝走完决策树 |
-| `superpower/brainstorming` | 工作流开场澄清 | 偏「完整流程的开场」;grill-me 偏「单点深挖」,可叠加 |
-| `superpower/writing-plans` | 共识达成后拆计划 | grill-me 走完的决策树,正好变成计划的骨架 |
+| `superpowers/brainstorming` | 工作流开场澄清 | 偏「完整流程的开场」;grill-me 偏「单点深挖」,可叠加 |
+| `superpowers/writing-plans` | 共识达成后拆计划 | grill-me 走完的决策树,正好变成计划的骨架 |
 
 一句话:**`grill-me` 是动手前的压力测试,`verification-before-completion` 是收工前的验证**,一头一尾。
 

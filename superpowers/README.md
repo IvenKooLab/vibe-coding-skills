@@ -17,7 +17,7 @@ superpowers(obra/superpowers)的本质不是某个框架教程,而是一套工�
 ## 产物结构
 
 ```
-superpower/
+superpowers/
 ├─ README.md                       # 本文件
 ├─ 分享说明.md                     # 群发用:同事怎么装/用/卸(一页纸)
 ├─ docs\
@@ -25,14 +25,14 @@ superpower/
 ├─ _template\
 │  └─ SKILL.md                     # 可直接套用的标准模板
 ├─ skills\                         # 6 个 skills(1 开关 + 5 方法论,中文)
-│  ├─ superpower\                 #   总开关(/superpower 一键启用整套流程)
+│  ├─ superpowers\                 #   总开关(/superpowers 一键启用整套流程)
 │  ├─ brainstorming\              #   需求澄清
 │  ├─ writing-plans\              #   编写实施计划
 │  ├─ test-driven-development\    #   测试驱动开发
 │  ├─ systematic-debugging\        #   系统化调试
 │  └─ verification-before-completion\  # 完成前验证
 ├─ commands\
-│  └─ superpower.md               # /superpower 开关命令(Claude Code slash command)
+│  └─ superpowers.md               # /superpowers 开关命令(Claude Code slash command)
 ├─ bootstrap\
 │  ├─ CLAUDE.md.snippet           # Claude Code 引导(哨兵包裹)
 │  └─ qoder-rule.md               # Qoder 引导(trigger: always_on)
@@ -53,20 +53,20 @@ superpower/
 
 > 💡 **skill 正文已改为英文**(AI 加载英文比中文省约 30% token);**中文说明就看本节**。
 
-不想逐个记 skill 名字?对 agent 说一句 **`/superpower`**(Claude Code)或**「启用 superpowers」**(Qoder),本会话后续所有任务自动按下表流程执行。说「停用 superpowers」退出。
+不想逐个记 skill 名字?对 agent 说一句 **`/superpowers`**(Claude Code)或**「启用 superpowers」**(Qoder),本会话后续所有任务自动按下表流程执行。说「停用 superpowers」退出。
 
 ### 各 skill 中文说明
 
 | Skill(英文文件名) | 中文名 | 什么时候用 / 做什么 |
 |---|---|---|
-| `superpower` | 总开关 | 说 `/superpower` 或「启用 superpowers」——一次性开启整套流程,后续任务自动走下面 5 步 |
+| `superpowers` | 总开关 | 说 `/superpowers` 或「启用 superpowers」——一次性开启整套流程,后续任务自动走下面 5 步 |
 | `brainstorming` | 需求澄清 | 新增功能/重构/修复杂 bug 前——先提问澄清、给 2-3 个方案、分块确认,确认后再动手 |
 | `writing-plans` | 编写实施计划 | 需求确认后、动手前——拆成 2-5 分钟可执行任务,每个含文件路径 + 验证步骤 |
 | `test-driven-development` | 测试驱动开发 | 写/改业务逻辑、修 bug——先写会失败的测试(RED),再写最小实现(GREEN),再重构 |
 | `systematic-debugging` | 系统化调试 | 排查 bug/报错/性能异常——稳定复现 → 找根因(不靠猜)→ 最小修复 → 验证 |
 | `verification-before-completion` | 完成前验证 | 声称"完成"前——实跑构建/测试/lint,给可核对证据,禁止"应该没问题" |
 
-**典型流程**:`/superpower` 开启后,每个任务依次走 brainstorming → writing-plans → test-driven-development →(遇问题)systematic-debugging → verification-before-completion。
+**典型流程**:`/superpowers` 开启后,每个任务依次走 brainstorming → writing-plans → test-driven-development →(遇问题)systematic-debugging → verification-before-completion。
 
 > **不重造轮子**:本套是方法论层,与现有 `lina-*` 框架知识层互补——本套管"怎么干",`lina-*` 管"用什么"。
 
@@ -120,7 +120,7 @@ bash install/install.sh --project /path/to/project
 ```bash
 bash install/install.sh --project /path/to/project --with-qoder
 ```
-→ 额外写入 `.qoder/skills/` + `.qoder/rules/superpower-sinosafe.md`(`trigger: always_on`)。
+→ 额外写入 `.qoder/skills/` + `.qoder/rules/superpowers-sinosafe.md`(`trigger: always_on`)。
 
 ### Windows PowerShell
 
@@ -142,7 +142,7 @@ bash install/install.sh --project /path/to/project --with-qoder
 .\install\install.bat --uninstall --project D:\code\myproj
 ```
 
-> `.bat` 卸载只删 skill + 命令,**不动 CLAUDE.md**(cmd 无法安全删除多行哨兵块);要清 CLAUDE.md 引导段用 `install.ps1 --uninstall`,或手动删 `superpower-sinosafe:begin/end` 之间的行。
+> `.bat` 卸载只删 skill + 命令,**不动 CLAUDE.md**(cmd 无法安全删除多行哨兵块);要清 CLAUDE.md 引导段用 `install.ps1 --uninstall`,或手动删 `superpowers-sinosafe:begin/end` 之间的行。
 
 ### 先干跑 / 卸载
 
@@ -158,8 +158,8 @@ bash install/uninstall.sh --project /path              # 自包含卸载(无需�
 
 ## 实测验证(装完后)
 
-1. **Claude Code**:启动会话,先输入 `/superpower` 开启,再说"给用户模块加个批量导出功能"。✅ 预期:AI **先提问**(格式/数据量/权限/是否异步),而非直接写码——说明开关 + `brainstorming` 生效了。
-2. **Qoder**:同样 prompt,确认 `.qoder/rules/superpower-sinosafe.md` 显示为 `always_on`,AI 同样先查 skill。
+1. **Claude Code**:启动会话,先输入 `/superpowers` 开启,再说"给用户模块加个批量导出功能"。✅ 预期:AI **先提问**(格式/数据量/权限/是否异步),而非直接写码——说明开关 + `brainstorming` 生效了。
+2. **Qoder**:同样 prompt,确认 `.qoder/rules/superpowers-sinosafe.md` 显示为 `always_on`,AI 同样先查 skill。
 3. **卸载安全**:跑 `--uninstall`,确认 `CLAUDE.md` 里你自己写的内容原样保留、只有哨兵段被切除。
 
 ---

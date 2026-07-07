@@ -7,14 +7,14 @@
 #   ./uninstall.sh --project /path --with-qoder  # 同时卸载 Qoder(.qoder/)
 #   ./uninstall.sh --dry-run ...           # 只打印将删除什么,不真删
 #
-# 安全:只删本套装进去的东西(6 个 skill + /superpower 命令 + 哨兵引导段 +
+# 安全:只删本套装进去的东西(6 个 skill + /superpowers 命令 + 哨兵引导段 +
 #       Qoder rule),绝不删用户自己写的内容。
 # 注:本脚本与 install.sh --uninstall 等价、逻辑独立;若改了 skill 列表,两边同步。
 
 set -euo pipefail
 
 SKILL_NAMES=(
-  superpower
+  superpowers
   brainstorming
   writing-plans
   test-driven-development
@@ -22,8 +22,8 @@ SKILL_NAMES=(
   verification-before-completion
 )
 
-BEGIN="<!-- superpower-sinosafe:begin -->"
-END="<!-- superpower-sinosafe:end -->"
+BEGIN="<!-- superpowers-sinosafe:begin -->"
+END="<!-- superpowers-sinosafe:end -->"
 
 DRY_RUN=0
 PROJECT=""
@@ -52,12 +52,12 @@ remove_block() { # $1 = CLAUDE.md ; 输出剔除哨兵块后的内容到 stdout
 if [ -z "$PROJECT" ]; then
   echo "===> 卸载全局 Claude Code: $HOME/.claude"
   for s in "${SKILL_NAMES[@]}"; do run rm -rf "$HOME/.claude/skills/$s"; done
-  run rm -f "$HOME/.claude/commands/superpower.md"
+  run rm -f "$HOME/.claude/commands/superpowers.md"
   echo "    (全局模式:未动 CLAUDE.md)"
 else
   echo "===> 卸载项目 Claude Code: $PROJECT/.claude"
   for s in "${SKILL_NAMES[@]}"; do run rm -rf "$PROJECT/.claude/skills/$s"; done
-  run rm -f "$PROJECT/.claude/commands/superpower.md"
+  run rm -f "$PROJECT/.claude/commands/superpowers.md"
   if [ -f "$PROJECT/CLAUDE.md" ]; then
     tmp="$(mktemp)"; remove_block "$PROJECT/CLAUDE.md" > "$tmp"
     run cp "$tmp" "$PROJECT/CLAUDE.md"; rm -f "$tmp"
@@ -65,7 +65,7 @@ else
   if [ "$WITH_QODER" -eq 1 ]; then
     echo "===> 卸载 Qoder: $PROJECT/.qoder"
     for s in "${SKILL_NAMES[@]}"; do run rm -rf "$PROJECT/.qoder/skills/$s"; done
-    run rm -f "$PROJECT/.qoder/rules/superpower-sinosafe.md"
+    run rm -f "$PROJECT/.qoder/rules/superpowers-sinosafe.md"
   fi
 fi
 

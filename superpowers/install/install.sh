@@ -20,11 +20,11 @@ SRC_COMMANDS="$REPO_ROOT/commands"
 SNIPPET="$REPO_ROOT/bootstrap/CLAUDE.md.snippet"
 QODER_RULE="$REPO_ROOT/bootstrap/qoder-rule.md"
 
-BEGIN="<!-- superpower-sinosafe:begin -->"
-END="<!-- superpower-sinosafe:end -->"
+BEGIN="<!-- superpowers-sinosafe:begin -->"
+END="<!-- superpowers-sinosafe:end -->"
 
 SKILL_NAMES=(
-  superpower
+  superpowers
   brainstorming
   writing-plans
   test-driven-development
@@ -89,10 +89,10 @@ install_claude() {
     run rm -rf "$skills_dir/$s"
     run cp -r "$SRC_SKILLS/$s" "$skills_dir/$s"
   done
-  # /superpower slash 命令(Claude Code 专用;Qoder 用 superpower skill 触发)
+  # /superpowers slash 命令(Claude Code 专用;Qoder 用 superpowers skill 触发)
   local cmds_dir="$dest_root/commands"
   mkdir -p "$cmds_dir" 2>/dev/null || true
-  run cp "$SRC_COMMANDS/superpower.md" "$cmds_dir/superpower.md"
+  run cp "$SRC_COMMANDS/superpowers.md" "$cmds_dir/superpowers.md"
   # 引导:仅项目级 CLAUDE.md 自动注入;全局模式只提示
   if [ -n "$PROJECT" ]; then
     run inject_block "$PROJECT/CLAUDE.md"
@@ -112,7 +112,7 @@ install_qoder() {
     run rm -rf "$skills_dir/$s"
     run cp -r "$SRC_SKILLS/$s" "$skills_dir/$s"
   done
-  run cp "$QODER_RULE" "$rules_dir/superpower-sinosafe.md"
+  run cp "$QODER_RULE" "$rules_dir/superpowers-sinosafe.md"
 }
 
 # --- 卸载 ---
@@ -121,7 +121,7 @@ do_uninstall() {
     local claude_root="$PROJECT/.claude/skills"
     echo "===> 卸载 Claude Code(项目): $claude_root"
     for s in "${SKILL_NAMES[@]}"; do run rm -rf "$claude_root/$s"; done
-    run rm -f "$PROJECT/.claude/commands/superpower.md"
+    run rm -f "$PROJECT/.claude/commands/superpowers.md"
     if [ -f "$PROJECT/CLAUDE.md" ]; then
       local tmp; tmp="$(mktemp)"; remove_block "$PROJECT/CLAUDE.md" > "$tmp"
       run cp "$tmp" "$PROJECT/CLAUDE.md"; rm -f "$tmp"
@@ -129,13 +129,13 @@ do_uninstall() {
     if [ "$WITH_QODER" -eq 1 ]; then
       echo "===> 卸载 Qoder(项目): $PROJECT/.qoder"
       for s in "${SKILL_NAMES[@]}"; do run rm -rf "$PROJECT/.qoder/skills/$s"; done
-      run rm -f "$PROJECT/.qoder/rules/superpower-sinosafe.md"
+      run rm -f "$PROJECT/.qoder/rules/superpowers-sinosafe.md"
     fi
   else
     local claude_root="$HOME/.claude/skills"
     echo "===> 卸载 Claude Code(全局): $claude_root"
     for s in "${SKILL_NAMES[@]}"; do run rm -rf "$claude_root/$s"; done
-    run rm -f "$HOME/.claude/commands/superpower.md"
+    run rm -f "$HOME/.claude/commands/superpowers.md"
     echo "    (全局模式未动 CLAUDE.md)"
   fi
   echo "卸载完成。"
@@ -158,4 +158,4 @@ fi
 
 echo
 echo "完成。$( [ "$DRY_RUN" -eq 1 ] && echo '(dry-run,未实际写入)' )"
-echo "下一步:在 Claude Code 里输入 /superpower(或 Qoder 里说『启用 superpowers』),后续任务即自动按方法论执行。"
+echo "下一步:在 Claude Code 里输入 /superpowers(或 Qoder 里说『启用 superpowers』),后续任务即自动按方法论执行。"
