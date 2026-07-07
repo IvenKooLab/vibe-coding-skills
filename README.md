@@ -12,7 +12,7 @@
 - **英文 `SKILL.md`**——AI 加载正文(英文比中文省约 30% token),给 agent 看。
 - 跨工具字节同构:同一份 `SKILL.md` 复制到 `.claude/skills/` 与 `.qoder/skills/` 即两处生效。
 
-编写规范见 [`superpower/docs/skill编写规范.md`](superpower/docs/skill编写规范.md)。
+编写规范见 [`superpower/docs/skill编写规范.md`](superpowers/docs/skill编写规范.md)。
 
 ---
 
@@ -22,7 +22,7 @@
 
 | 包 | 层 | 一句话 | 来源 |
 |---|---|---|---|
-| [`superpower`](superpower/) | 方法论层 | 动手前先澄清需求→拆计划→TDD→系统化调试→完成前验证 | obra/superpowers + 公司 lina-* |
+| [`superpower`](superpowers/) | 方法论层 | 动手前先澄清需求→拆计划→TDD→系统化调试→完成前验证 | obra/superpowers + 公司 lina-* |
 | [`grill-me`](grill-me/) | 需求拷问层 | 动手前对计划做「无情盘问」,逐个走完决策树,直到达成共识 | mattpocock/skills · grill-me |
 | [`ponytail`](ponytail/) | 精简纪律层 | 像最懒的资深开发:能不写就不写,能一行就一行,**懒而不疏忽** | DietrichGebert/ponytail |
 | [`Trellis`](Trellis/) | 工程框架层 | 把 spec / task / memory 持久化进仓库,让 AI 跨会话有记忆 + 多 agent 协作 | mindfold-ai/Trellis |
