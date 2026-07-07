@@ -1,6 +1,6 @@
 # Superpowers 工作方法论 · 华安增强版
 
-> 把 superpowers 的"AI 怎么干活"工作方法论,沉淀为一套**同时适用于 Claude Code 与 Qoder(阿里 AI IDE)**的 skill,补上公司 skill 库缺位的"方法论层"。
+> 把 superpowers 的"AI 怎么干活"工作方法论,沉淀为一套**同时适用于 Claude Code、Qoder(阿里 AI IDE)、Trae(字节 AI IDE)**的 skill,补上公司 skill 库缺位的"方法论层"。
 
 ---
 
@@ -10,7 +10,7 @@ superpowers(obra/superpowers)的本质不是某个框架教程,而是一套工�
 
 摸底公司现有 skill 发现:大多是**框架知识层**(`lina-*`——告诉 AI"用什么"),但"怎么干"这套工作流是缺位的。本套就是来填这个坑的。
 
-**关键事实**:Claude Code 和 Qoder 的 skill 文件**字节级同构**——同一份 `SKILL.md` 复制到 `.claude/skills/` 与 `.qoder/skills/` 即两处生效,无需维护两套。详见 [`docs/skill编写规范.md`](docs/skill编写规范.md)。
+**关键事实**:Claude Code、Qoder、Trae 的 skill 文件**字节级同构**——同一份 `SKILL.md` 复制到 `.claude/skills/`、`.qoder/skills/`、`.trae/skills/` 即三处生效,无需维护多套。详见 [`docs/skill编写规范.md`](docs/skill编写规范.md)。
 
 ---
 
@@ -99,58 +99,51 @@ superpowers/
 
 ## 怎么装(审阅后)
 
-> 本目录是**暂存区**,审阅满意后再装到 live 环境。安装脚本不碰 staging 之外的既有内容(除非你显式指定目标)。
+> 本目录是**暂存区**,审阅满意后再装到 live 环境。安装脚本**只往已装的 IDE 写**,不会替你没装的工具建空目录;删除前还会做指纹校验,绝不误删同名第三方内容。
 
-### Claude Code(全局,最简单)
+### 全局(双击即跑,推荐)
 
-```bash
-bash install/install.sh
-```
-→ 把 5 个 skill 复制到 `~/.claude/skills/`,所有项目可用。
+三种脚本行为一致,选你顺手的:
 
-### Claude Code(某项目,含引导)
+| 脚本 | 命令 |
+|---|---|
+| bash / Git Bash | `bash install/install.sh` |
+| PowerShell | `.\install\install.ps1` |
+| 批处理(双击) | `.\install\install.bat` |
+
+→ 自动扫描 `~/.claude`、`~/.qoder`、`~/.trae-cn`、`~/.trae`,**装了哪个 IDE 就往哪个里塞 skills**,没装的不碰(不建空目录)。
+
+> 一个 IDE 都没装过(以上目录都不存在)时,脚本会提示并退出,不写任何东西。想预装到某个 IDE 用下面的 `--with-*` 强制。
+
+### 项目级(含 CLAUDE.md 引导)
 
 ```bash
 bash install/install.sh --project /path/to/project
 ```
-→ 复制到 `<project>/.claude/skills/`,并往 `<project>/CLAUDE.md` 追加引导段(哨兵包裹,可精确卸载)。
+→ 复制到 `<project>/.claude/skills/`,并往 `<project>/CLAUDE.md` 追加引导段(哨兵包裹,可精确卸载)。项目模式下 `.claude` 总是装;Qoder / Trae 需显式 `--with-*`。
 
-### 同时装 Qoder(项目级)
+### 指定 IDE(Claude Code / Qoder / Trae)
 
 ```bash
-bash install/install.sh --project /path/to/project --with-qoder
-```
-→ 额外写入 `.qoder/skills/` + `.qoder/rules/superpowers-sinosafe.md`(`trigger: always_on`)。
-
-### Windows PowerShell
-
-```powershell
-.\install\install.ps1                                 # 全局
-.\install\install.ps1 -Project 'D:\code\myproj'       # 项目级 + 引导
-.\install\install.ps1 -Project 'D:\code\myproj' -WithQoder
+bash install/install.sh --with-claude            # 全局 ~/.claude(即使目录不存在也建)
+bash install/install.sh --with-qoder             # 全局 ~/.qoder
+bash install/install.sh --with-trae              # 全局 ~/.trae-cn(回退 ~/.trae)
+bash install/install.sh --with-all               # Claude Code + Qoder + Trae 一起
+bash install/install.sh --project /path --with-all   # 项目级三端
 ```
 
-### Windows 批处理(.bat,无需 PowerShell)
-
-不想装 Git Bash、也不想碰 PowerShell?直接双击 `.bat`(纯 cmd,不依赖任何运行时):
-
-```cmd
-.\install\install.bat                                 # 全局(双击即跑)
-.\install\install.bat --project D:\code\myproj        # 项目级 + 引导
-.\install\install.bat --project D:\code\myproj --with-qoder
-.\install\install.bat --dry-run                       # 只看将做什么,不写盘
-.\install\install.bat --uninstall --project D:\code\myproj
-```
-
-> `.bat` 卸载只删 skill + 命令,**不动 CLAUDE.md**(cmd 无法安全删除多行哨兵块);要清 CLAUDE.md 引导段用 `install.ps1 --uninstall`,或手动删 `superpowers-sinosafe:begin/end` 之间的行。
+→ Qoder 写 `.qoder/skills/` + `.qoder/rules/superpowers-sinosafe.md`(`trigger: always_on`);Trae 写 `.trae/skills/`(+ `.trae/rules/`)。PowerShell 把 `--with-xxx` 换成 `-WithXxx`(`-WithClaude`、`-WithTrae`、`-WithAll`)。
 
 ### 先干跑 / 卸载
 
 ```bash
-bash install/install.sh --dry-run --project /path      # 只看将做什么,不写盘
-bash install/install.sh --uninstall --project /path    # 卸载(也可直接用 uninstall.sh)
-bash install/uninstall.sh --project /path              # 自包含卸载(无需原仓库)
+bash install/install.sh --dry-run               # 只看将做什么,不写盘
+bash install/install.sh --uninstall             # 卸全局(按哨兵精确移除,不误删用户内容)
+bash install/install.sh --uninstall --project /path --with-all
+bash install/uninstall.sh --project /path        # 自包含卸载(无需原仓库)
 ```
+
+> `.bat` 卸载只删 skill + 命令,**不动 CLAUDE.md**(cmd 无法安全删多行哨兵块);要清 CLAUDE.md 引导段用 `install.ps1 -Uninstall` 或手动删 `superpowers-sinosafe:begin/end` 之间的行。`install.ps1` / `install.sh` 能自动清理 CLAUDE.md 哨兵块(含旧 `superpower-sinosafe` 残留)。
 
 > 分享给同事、远程一行安装、卸载,详见 [`分享说明.md`](分享说明.md)。打成压缩包分发的现成包见上级目录 `superpowers-skills.zip`。
 

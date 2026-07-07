@@ -2,9 +2,10 @@
 # superpowers skill 集 —— 远程一行安装(从内网 git 仓库拉取并安装)
 #
 # 用法(同事无需手动 clone):
-#   bash remote-install.sh                              # 装到全局 Claude Code (~/.claude)
+#   bash remote-install.sh                              # 全局:装了哪个 IDE(Claude Code/Qoder/Trae)就往哪个里装
 #   bash remote-install.sh --project /path/to/proj      # 装到某项目
-#   bash remote-install.sh --project /path --with-qoder # 同时装 Qoder
+#   bash remote-install.sh --with-all                   # 强制三端
+#   bash remote-install.sh --project /path --with-all
 #
 # 托管在内网 git 后,一行命令(参数透传):
 #   curl -fsSL <仓库>/raw/main/install/remote-install.sh | bash -s -- --project /path
@@ -27,4 +28,4 @@ echo "==> 运行安装器(透传参数:$*) ..."
 bash "$TMP/repo/install/install.sh" "$@"
 
 echo "==> 完成,临时目录已自动清理。"
-echo "在 Claude Code 里输入 /superpowers 即可开始;卸载见 install/uninstall.sh。"
+echo "在 Claude Code 里输入 /superpowers(Qoder/Trae 里说 启用 superpowers)即可开始;卸载见 install/uninstall.sh。"
