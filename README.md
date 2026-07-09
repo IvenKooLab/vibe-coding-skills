@@ -16,9 +16,9 @@
 
 ---
 
-## 四个包与分层
+## 五个包与分层
 
-四个包**互补、可组合**,从「动手前」到「写码时」到「跨会话」各管一段:
+五个包**互补、可组合**,从「动手前」到「写码时」到「跨会话」各管一段:
 
 | 包 | 层 | 一句话 | 来源 |
 |---|---|---|---|
@@ -26,6 +26,7 @@
 | [`grill-me`](grill-me/) | 需求拷问层 | 动手前对计划做「无情盘问」,逐个走完决策树,直到达成共识 | mattpocock/skills · grill-me |
 | [`ponytail`](ponytail/) | 精简纪律层 | 像最懒的资深开发:能不写就不写,能一行就一行,**懒而不疏忽** | DietrichGebert/ponytail |
 | [`Trellis`](Trellis/) | 工程框架层 | 把 spec / task / memory 持久化进仓库,让 AI 跨会话有记忆 + 多 agent 协作 | mindfold-ai/Trellis |
+| [`openspec`](openspec/) | 规格契约层 | 把需求/契约沉淀成仓库 spec(唯一可信基线);涉及 Lina 框架时路由到对应 `lina-*` | Fission-AI/OpenSpec + 公司 lina-* |
 
 ### 它们怎么串起来
 
@@ -38,11 +39,14 @@
 │  精简纪律   ponytail       写最少必要的代码;删优于增            │
 ├──────────────────────────────────────────────────────────────┤
 │  工程框架   Trellis        spec/task/memory 持久化 + 多 agent  │
+├──────────────────────────────────────────────────────────────┤
+│  规格契约   openspec       需求/契约沉淀成仓库 spec(唯一基线)   │
 └──────────────────────────────────────────────────────────────┘
                        ↓ 调用 / 交叉引用
 ┌──────────────────────────────────────────────────────────────┐
 │  框架知识层(公司已有 lina-*):「用什么」                       │
 │  lina-redis · lina-rabbitmq · lina-mybatis · ...              │
+│  openspec Part B 是去那里的路由器(一带多)                    │
 └──────────────────────────────────────────────────────────────┘
 ```
 
@@ -50,6 +54,7 @@
 - `grill-me` 与 `superpowers` 的 `brainstorming` 都做需求澄清:`grill-me` 更偏**单点深度盘问**(把一个计划问透),`brainstorming` 更偏**完整工作流开场**。可单独用,也可叠加。
 - `ponytail` 是「写码时」的纪律,与任何方法论层都正交,叠加即生效。
 - `Trellis` 适合**需要跨会话记忆 / 多 agent 协作 / 团队共享 spec** 的中大型项目;轻量单人项目用前三者即可。
+- `openspec` 与 `Trellis` 同属工程框架域但分工:`openspec` 管需求**契约**(proposal→archive 的 delta),`Trellis` 管**持久化 + 编排**(spec/task/memory + 多 agent)。重项目可叠加;**轻量项目可不引入 OpenSpec**,只用方法论层(红线见 `superpowers/docs/skill编写规范.md` §8)。
 
 ---
 
@@ -62,7 +67,8 @@
 ├─ superpowers/                     # 方法论层(5 skills + 开关 + 安装脚本)
 ├─ grill-me/                       # 需求拷问(1 skill)
 ├─ ponytail/                       # 精简纪律(1 核心 + 5 命令 skills)
-└─ Trellis/                        # 工程框架精华(核心工作流 skills)
+├─ Trellis/                        # 工程框架精华(核心工作流 skills)
+└─ openspec/                       # 规格契约层 + Lina 框架中转(1 skill)
 ```
 
 各包的安装 / 使用 / 卸载,见对应目录下的 `README.md`。
@@ -75,6 +81,7 @@
 - [mattpocock/skills](https://github.com/mattpocock/skills) · `grill-me` → 需求拷问
 - [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail)(MIT)→ 精简纪律
 - [mindfold-ai/Trellis](https://github.com/mindfold-ai/Trellis)(AGPL-3.0)→ 工程框架
+- [Fission-AI/OpenSpec](https://github.com/Fission-AI/OpenSpec)(MIT)→ 规格契约层;`openspec` Part B 的 `lina-*` 随公司 skill 库
 - 跨工具格式规格:[agentskills.io/specification](https://agentskills.io/specification)
 
-> 各包 License 随上游:superpowers / ponytail 为 MIT;grill-me 随 mattpocock/skills;Trellis 上游为 AGPL-3.0,本仓库仅做方法论的**蒸馏摘录与中文说明**,未整体搬运其源码,使用时请遵守上游协议。
+> 各包 License 随上游:superpowers / ponytail / openspec 为 MIT;grill-me 随 mattpocock/skills;Trellis 上游为 AGPL-3.0,本仓库仅做方法论的**蒸馏摘录与中文说明**,未整体搬运其源码,使用时请遵守上游协议。
