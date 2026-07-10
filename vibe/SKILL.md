@@ -13,42 +13,53 @@ The point: the user shouldn't have to remember whether their task is a `grill-me
 
 > This is a **reach-for-it** tool. It never auto-triggers — the user always invokes it deliberately.
 
-## The 5 sibling packs (the menu)
+## The 5 sibling packs (two-step menu)
 
-When `/vibe` fires, output the menu below **as plain text**. Do **NOT** use any picker/card/selector UI component (e.g. AskUserQuestion-style option cards) — those cap at 4 options and will truncate the 5th. Output all 5 items as a numbered markdown list, then ask the user to reply with a number or pack name.
+The 5 packs are grouped into **4 categories** so they fit a 4-option picker card (pickers cap at 4). Two steps: pick a category, then pick the pack inside it. No pack is lost — all 5 are reachable.
+
+### Step 1 — show 4 category cards
+
+Present these 4 as selectable options (use the picker card UI if available; otherwise a numbered list):
 
 ```
-你要做哪类事?选一个(回编号或包名):
+你要做哪类事?选一个大类:
 
-1. (superpowers) 方法论全流程 —— 推荐:多人协作 / 中大型项目
-   动手前澄清→拆计划→TDD→系统化调试→完成前验证,一开就锁全流程
+A. 动手前 · 澄清与计划 —— 需求还没想清楚 / 计划有隐患
+   含:superpowers(brainstorming+writing-plans)、grill-me
 
-2. (openspec) 规格契约 —— 推荐:需求要跨会话/团队共识 / 涉及 Lina 框架
-   把需求契约沉淀进仓库 spec;涉及 Lina 时路由到对应 lina-*
+B. 规格与契约 —— 需求要跨会话 / 团队共识 / 涉及 Lina 框架
+   含:openspec
 
-3. (grill-me) 单点深度盘问 —— 推荐:计划"差不多对了"但有没拍板的决策
-   把计划当决策树逐枝走完,一次问一个,直到共识
+C. 写码时 · 纪律与质量 —— 嫌 AI 写太啰嗦 / 过度设计
+   含:ponytail
 
-4. (ponytail) 精简纪律 —— 推荐:嫌 AI 写太啰嗦 / 过度设计
-   像最懒的资深开发,能不写就不写,能一行就一行
-
-5. (Trellis) 工程框架 —— 推荐:多 agent 协作 / 需要跨会话记忆
-   spec/task/memory 持久化 + 多 worker 编排
+D. 跨会话与协作 —— 多 agent / 要记忆 / 团队共享
+   含:Trellis
 ```
 
-> If the user already stated their task when invoking `/vibe` (e.g. `/vibe 帮我加个导出功能`), you may **highlight your recommendation** in the menu ("→ 建议 1 或 4,因为…") — but **still let them choose**. Never pick for them.
+### Step 2 — expand the chosen category
 
-## The 3-step protocol
+Once the user picks a category, show the pack(s) inside it and let them pick the exact one:
 
-### 1. Show the menu (and optionally recommend)
+- **A picked** →
+  ```
+  A 类里有两个包,选哪个?
+  1. (superpowers) 方法论全流程 —— 推荐:多人协作 / 中大型项目
+     动手前澄清→拆计划→TDD→系统化调试→完成前验证,一开就锁全流程
+  2. (grill-me) 单点深度盘问 —— 推荐:计划"差不多对了"但有没拍板的决策
+     把计划当决策树逐枝走完,一次问一个,直到共识
+  ```
+- **B picked** → 直接是 `openspec`,无需二选,直接转交。
+- **C picked** → 直接是 `ponytail`,无需二选,直接转交。
+- **D picked** → 直接是 `Trellis`,无需二选,直接转交。
 
-If the user gave a task with `/vibe`, read it and mark your recommendation, but show all 5 options. If they just said `/vibe` with no task, show the menu as-is. Ask them to pick by number or name.
+> If the user already stated their task with `/vibe` (e.g. `/vibe 帮我加个导出功能`), you may **highlight your recommended category/pack** ("→ 建议 A 类的 superpowers,因为…") — but **still let them choose**. Never pick for them.
+>
+> Shortcut: if the user replies with a pack name directly (`/vibe openspec` or just `openspec`), skip both steps and hand off to that pack immediately.
 
-**Wait.** Do not proceed until they pick.
+## Handoff protocol (after the user picks)
 
-### 2. Hand off with context
-
-Once the user picks a pack, load that pack's `SKILL.md` and **hand off carrying context**:
+Once the user picks a pack (via the two-step menu or a direct pack name), load that pack's `SKILL.md` and **hand off carrying context**:
 
 - **What the user asked for** (their original requirement, restated in one line)
 - **Why this pack was chosen** (the routing reason)
@@ -56,7 +67,7 @@ Once the user picks a pack, load that pack's `SKILL.md` and **hand off carrying 
 
 Then step back — the chosen pack takes over. You are the switchboard, not the executor.
 
-### 3. Re-assess after each step (optional)
+### Re-assess after each step (optional)
 
 When the chosen pack finishes a step, `/vibe` *may* re-surface to suggest the next pack (e.g. after `grill-me` converges → suggest `superpowers` §writing-plans). This is **opt-in** — only do it if the user asked for multi-step routing. For a single-shot pick, `/vibe` hands off once and is done.
 
