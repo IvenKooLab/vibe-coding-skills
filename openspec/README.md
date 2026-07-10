@@ -15,7 +15,7 @@
 | **Part A · 规格契约层** | 做什么 / 契约 / 沉淀 | 需求反复重讲、跨会话/跨人对不上口径、AI 偏离已定契约 |
 | **Part B · 框架知识中转** | 涉及 Lina 框架时,路由到对的 `lina-*` | 不用自己推「用哪个 starter、怎么配」,一个总入口分流到 12 个模块 |
 
-> **红线(记死这条)**:OpenSpec 管「做什么 + 契约」,Superpowers 方法论([[brainstorming]] / [[writing-plans]] / [[test-driven-development]] 等)管「怎么做 + 质量」。一件事只由一套主导,互不越界。skill 只读 spec、不修改需求基线。**轻量项目可以完全不引入 OpenSpec**,只用方法论层。
+> **红线(记死这条)**:OpenSpec 管「做什么 + 契约」,Superpowers 方法论([[superpowers]] 的 brainstorming / writing-plans / test-driven-development 等纪律)管「怎么做 + 质量」。一件事只由一套主导,互不越界。skill 只读 spec、不修改需求基线。**轻量项目可以完全不引入 OpenSpec**,只用方法论层。
 
 ---
 
@@ -128,7 +128,7 @@
 **不用**:
 
 - 轻量、单人、短期、不需要跨会话记忆——方法论层 + [[ponytail]] 够了,**别交用不上的规格税**。
-- 正在排查具体 bug——用 [[systematic-debugging]](可以**读** spec 理解预期行为,但别在 bug 中途跑 propose 循环)。
+- 正在排查具体 bug——用 [[superpowers]] 的 systematic-debugging 纪律(可以**读** spec 理解预期行为,但别在 bug 中途跑 propose 循环)。
 - 任务不碰任何 Lina 模块——Part B 无可路由;若你想要契约留痕,Part A 仍可单独用。
 
 ---
@@ -172,7 +172,7 @@ cp SKILL.md <项目>/.claude/skills/openspec/
 在现有「四个包 + 分层」坐标系里,OpenSpec 是第五个包:
 
 - **与 [[trellis]] 并列**(都偏工程框架层):Trellis 管 spec/task/memory 的**持久化 + 多 agent 编排**;OpenSpec 管**需求契约的提案 → 归档**。重项目可叠加——OpenSpec 谈契约,Trellis 保契约 + 任务 + 记忆跨 agent 一致。
-- **与 superpowers 方法论层正交**:OpenSpec = 做什么/契约;[[brainstorming]]/[[writing-plans]]/[[test-driven-development]]/[[verification-before-completion]] = 怎么做/质量。红线见上文。
+- **与 superpowers 方法论层正交**:OpenSpec = 做什么/契约;[[superpowers]] 的 brainstorming/writing-plans/test-driven-development/verification-before-completion 纪律 = 怎么做/质量。红线见上文。
 - **`lina-*` 是「用什么」**(框架知识层,公司已有),本 skill 的 Part B 是**去那里的路由器**——像 superpowers 一带多那样,一个总入口分流。
 
 ---

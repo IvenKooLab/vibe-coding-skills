@@ -28,7 +28,7 @@ This is a **reach-for-it, stateless** tool. It writes nothing and leaves no work
 
 - The user has not asked for it — this skill is **never** auto-triggered; it is always user-invoked.
 - The requirement is already crystal clear and unambiguous; grilling would be ceremony.
-- You are mid-implementation debugging a concrete bug — use [[systematic-debugging]] instead.
+- You are mid-implementation debugging a concrete bug — use [[superpowers]] §systematic-debugging instead.
 
 ## Process
 
@@ -56,6 +56,6 @@ This is a **reach-for-it, stateless** tool. It writes nothing and leaves no work
 
 ## Collaborates with
 
-- Pairs with [[brainstorming]] (the methodology-layer requirement-clarifier) — `grill-me` is the dedicated deep-interview tool; `brainstorming` is the workflow opener.
-- Hands off cleanly to [[writing-plans]] once shared understanding is reached — the visited decision tree becomes the plan's structure.
-- See [[verification-before-completion]] for the *post*-build counterpart; `grill-me` is the *pre*-build stress test.
+- Pairs with [[superpowers]] §brainstorming (the methodology-layer requirement-clarifier) — `grill-me` is the dedicated deep-interview tool; §brainstorming is the workflow opener.
+- Hands off cleanly to [[superpowers]] §writing-plans once shared understanding is reached — the visited decision tree becomes the plan's structure.
+- See [[superpowers]] §verification-before-completion for the *post*-build counterpart; `grill-me` is the *pre*-build stress test.

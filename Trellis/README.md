@@ -62,7 +62,7 @@ Trellis 跑一个带自动调用 skill(全量 harness 里是 sub-agent)的循环
 
 **用 Trellis**:项目跨会话、多 agent、团队共享——你愿意付出维护 spec/task/memory 的成本,换来不失忆、共享标准、可 review 的上下文。
 
-**不用**:轻量、单人、短期、不需要跨会话记忆的项目——方法论层([[brainstorming]]→[[writing-plans]]→[[test-driven-development]]→[[verification-before-completion]])加 [[ponytail]] 就够了。**别交用不上的框架税。**
+**不用**:轻量、单人、短期、不需要跨会话记忆的项目——方法论层([[superpowers]]:brainstorming→writing-plans→test-driven-development→verification-before-completion)加 [[ponytail]] 就够了。**别交用不上的框架税。**
 
 ---
 

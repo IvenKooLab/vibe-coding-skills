@@ -25,7 +25,7 @@
 一个 skill 是**一个目录**,目录里至少有一个 `SKILL.md`:
 
 ```
-brainstorming/
+creating-skills/
 ├── SKILL.md          # 必需:metadata + 指令
 ├── references/       # 可选:重型参考文档(按需加载)
 ├── assets/           # 可选:模板、示例数据
@@ -42,7 +42,7 @@ SKILL.md 顶部 YAML frontmatter,**只有两个字段是必需且关键**:
 
 ```yaml
 ---
-name: brainstorming
+name: creating-skills
 description: 在任何创造性工作开始之前使用——通过提问澄清真实意图、探索备选方案、分块呈现设计供确认。
 ---
 ```
@@ -121,7 +121,7 @@ description: 在新增功能、重构、修复杂 bug 等创造性工作开始�
 
 - **正文 <500 行**。逼近上限时,**把重型参考(100+ 行的 API 文档、综合语法、大表格)拆到同级独立文件**,在正文用相对链接引用。
 - **引用只允许一层深**(`SKILL.md → references/foo.md`),禁止 `a.md → b.md → c.md` 多层嵌套——AI 遇到嵌套引用只 `head` 预览,信息会丢。
-- **不要用 `@path` 强制加载**引用文件(会瞬间灌爆 context);用 skill 名 + 显式标记:`详见 [[systematic-debugging]]`。
+- **不要用 `@path` 强制加载**引用文件(会瞬间灌爆 context);用 skill 名 + 显式标记:`详见 [[superpowers]]`。
 - **路径永远用正斜杠 `/`**,即使 Windows。
 - **>100 行的参考文件**在文件头加目录(Table of Contents)。
 
@@ -196,12 +196,12 @@ Qoder rule 的三种触发模式:`always_on`(始终生效,引导用此)、`model
 
 | 层 | 管什么 | 代表 skill |
 |---|---|---|
-| **方法论层**(本套) | 怎么干(动手前澄清、完成前验证、TDD) | `brainstorming`、`writing-plans`、`test-driven-development`、`systematic-debugging`、`verification-before-completion` |
+| **方法论层**(本套) | 怎么干(动手前澄清、完成前验证、TDD) | `superpowers`(单 skill,内含 brainstorming / writing-plans / test-driven-development / systematic-debugging / verification-before-completion 5 个纪律) |
 | **框架知识层**(已有) | 用什么(Lina 框架、中间件) | `lina-framework-base`、`lina-redis`、`lina-mybatis-plus`、`lina-rabbitmq`、`lina-sso` 等 |
 
-**一键开关(总开关 skill)**:除了上面 5 个流程 skill,还有一个 `superpowers` 开关 skill + Claude Code 的 `/superpowers` 命令。用户说一句 `/superpowers`/「启用 superpowers」,本会话后续所有任务自动按 5 步流程执行,不必逐个触发。开关 skill 本身遵循同样的编写规范(description 只写"何时用")。
+**一键开关(总开关 skill)**:方法论层是一个单 skill `superpowers` + Claude Code 的 `/superpowers` 命令。用户说一句 `/superpowers`/「启用 superpowers」,本会话后续所有任务自动按 5 步流程执行,不必逐个触发。开关 skill 本身遵循同样的编写规范(description 只写"何时用")。
 
-**协作方式**:方法论 skill 在"何时用/协作"小节用 `[[skill-name]]` 交叉引用框架 skill。例:`brainstorming` 涉及框架时指向 `[[lina-framework-base]]`;`systematic-debugging` 涉及中间件异常时指向 `[[lina-redis]]` / `[[lina-rabbitmq]]`。
+**协作方式**:方法论 skill 在"何时用/协作"小节用 `[[skill-name]]` 交叉引用框架 skill。例:`superpowers` 的 brainstorming 纪律涉及框架时指向 `[[lina-framework-base]]`;systematic-debugging 纪律涉及中间件异常时指向 `[[lina-redis]]` / `[[lina-rabbitmq]]`。
 
 ### 与 OpenSpec 的红线
 

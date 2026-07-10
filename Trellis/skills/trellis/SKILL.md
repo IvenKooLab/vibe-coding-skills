@@ -46,7 +46,7 @@ Do not start implementation until the user approves. (Same instinct as [[grill-m
 
 **Use Trellis when** the project is multi-session, multi-agent, or team-shared — you're paying the cost of keeping specs/tasks/memory, and reaping not-amnesia, shared standards, and reviewable context.
 
-**Skip it when** the project is light, single-dev, short-lived, and you don't need cross-session memory — the methodology layer ([[brainstorming]] → [[writing-plans]] → [[test-driven-development]] → [[verification-before-completion]]) plus [[ponytail]] is enough. Don't pay the framework tax you won't use.
+**Skip it when** the project is light, single-dev, short-lived, and you don't need cross-session memory — the methodology layer ([[superpowers]]: §brainstorming → §writing-plans → §test-driven-development → §verification-before-completion) plus [[ponytail]] is enough. Don't pay the framework tax you won't use.
 
 ## Anti-patterns (Never)
 
@@ -58,5 +58,5 @@ Do not start implementation until the user approves. (Same instinct as [[grill-m
 ## Collaborates with
 
 - Plan phase = [[trellis-brainstorm]] (shares DNA with [[grill-me]]). Verify phase = [[trellis-check]]. Multi-agent = [[trellis-channel]].
-- Sits **above** the methodology layer ([[brainstorming]], [[writing-plans]], [[test-driven-development]]): Trellis is the *persistence + orchestration* frame those skills run inside.
+- Sits **above** the methodology layer ([[superpowers]]: §brainstorming / §writing-plans / §test-driven-development): Trellis is the *persistence + orchestration* frame those skills run inside.
 - The spec layer is where company framework knowledge (`lina-*`) can be anchored for a given project — write the relevant `lina-*` conventions into `.trellis/spec/` once, and every session inherits them.

@@ -12,21 +12,21 @@ alwaysApply: true
 ## 核心规则(始终生效)
 
 1. **收到任务先查 skill**——哪怕只有很小的可能性匹配,也要先查有没有对应的 skill 并按其流程执行,不要直接动手。
-2. **设计先于编码**——收到功能/重构类需求,先用 `brainstorming` 澄清,确认后再动手。
-3. **计划先于实现**——需求确认后,用 `writing-plans` 拆成可执行任务,再逐个实现。
-4. **测试先于实现**——写业务逻辑前先写会失败的测试(`test-driven-development`)。
-5. **系统化调试**——排查问题用 `systematic-debugging`,拒绝"改改试试"。
-6. **验证先于宣布完成**——声称"完成"前必须实跑验证并给证据(`verification-before-completion`)。
+2. **设计先于编码**——收到功能/重构类需求,先用 superpowers 的 `brainstorming` 纪律澄清,确认后再动手。
+3. **计划先于实现**——需求确认后,用 `writing-plans` 纪律拆成可执行任务,再逐个实现。
+4. **测试先于实现**——写业务逻辑前先写会失败的测试(`test-driven-development` 纪律)。
+5. **系统化调试**——排查问题用 `systematic-debugging` 纪律,拒绝"改改试试"。
+6. **验证先于宣布完成**——声称"完成"前必须实跑验证并给证据(`verification-before-completion` 纪律)。
 
 ## 优先级
 
 **用户显式指令 > 本 skill 集 > 默认行为。** 用户明确说"别用 TDD""直接写别问了",就照用户的。
 
-## 可用方法论 skills(执行层)
+## 方法论层 skill(superpowers,5 个纪律)
 
-Skills 位于 `.qoder/skills/`,每个 skill 有独立 `SKILL.md`。
+方法论层为一个单 skill `superpowers`,位于 `.qoder/skills/superpowers/SKILL.md`,内含 5 个纪律。
 
-| Skill | 何时用 |
+| 纪律 | 何时用 |
 |---|---|
 | `brainstorming` | 新增功能/重构/修复杂 bug/技术选型前——先澄清需求、探索方案、分块确认 |
 | `writing-plans` | 需求确认后、动手前——拆成 2-5 分钟可执行任务,含文件路径+验证步骤 |
@@ -42,4 +42,4 @@ Skills 位于 `.qoder/skills/`,每个 skill 有独立 `SKILL.md`。
 
 ## 如何使用
 
-当任务匹配某 skill 的"何时用"时,读取对应的 `.qoder/skills/<name>/SKILL.md` 并严格遵循其流程。也可输入 `/` 显式调用。
+当任务匹配某纪律的"何时用"时,读取 `.qoder/skills/superpowers/SKILL.md` 中对应章节并严格遵循其流程。也可输入 `/superpowers` 调用整个方法论层。

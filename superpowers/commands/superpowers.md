@@ -10,6 +10,8 @@ Enable Superpowers methodology mode. From now on, **every development task** thi
 4. **systematic-debugging** — on a bug/error, reproduce reliably and locate the root cause first; no trial-and-error
 5. **verification-before-completion** — actually run build/tests and show checkable evidence before claiming "done"
 
+> These 5 disciplines live in the single `superpowers` skill (`skills/superpowers/SKILL.md`), invoked as a whole by `/superpowers`.
+
 Rules:
 - Before each step, check whether a matching skill exists; if so, follow its process strictly.
 - Explicit user instructions take the highest priority; to exit this mode, the user says "disable superpowers" / "停用 superpowers".

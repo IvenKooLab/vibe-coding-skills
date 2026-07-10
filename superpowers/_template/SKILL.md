@@ -1,6 +1,6 @@
 ---
 # ← 填写指引(发布前删掉所有中文注释行)
-# name: 与目录名完全一致的 kebab-case 英文 slug,如 brainstorming
+# name: 与目录名完全一致的 kebab-case 英文 slug,如 creating-skills
 name: skill-name
 # description: ★唯一触发信号。第三人称,以"在……时使用"开头,
 #   只写"何时用 + 症状",绝不概括流程。≤1024 字符(理想 <500)。

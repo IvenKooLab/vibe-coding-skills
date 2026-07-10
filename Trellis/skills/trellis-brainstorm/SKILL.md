@@ -72,4 +72,4 @@ Read `prd.md` top to bottom afterward and verify no fact is repeated across sect
 - Complex tasks have `design.md` + `implement.md`.
 - **The user has reviewed the final artifacts or explicitly approved proceeding.**
 
-Do not start implementation until the user approves. (See [[trellis]] for the full 4-phase loop; hand off to [[writing-plans]] when you want the converged PRD turned into an executable task breakdown.)
+Do not start implementation until the user approves. (See [[trellis]] for the full 4-phase loop; hand off to [[superpowers]] §writing-plans when you want the converged PRD turned into an executable task breakdown.)

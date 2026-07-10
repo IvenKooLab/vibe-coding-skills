@@ -12,7 +12,7 @@ This skill does **two things**, and they are orthogonal:
 1. **Contract layer (Part A)** — Persist requirements and design decisions into specs that live in the repo, so every session works against the *single source of truth* instead of someone's latest recollection. Distilled from [Fission-AI/OpenSpec](https://github.com/Fission-AI/OpenSpec) (MIT).
 2. **Framework router (Part B)** — When the work touches the company Lina framework, route to the right `lina-*` skill instead of re-deriving how to use it. One entry point, twelve destinations — like a switchboard.
 
-> **The red line with Superpowers (memorize this):** OpenSpec owns *what to build and the contract* (proposals, specs, design, tasks). The methodology layer — [[brainstorming]], [[writing-plans]], [[test-driven-development]], [[systematic-debugging]], [[verification-before-completion]] — owns *how to build and the quality*. This skill reads specs; it does **not** redefine the requirement baseline. Light projects can skip OpenSpec entirely and run on methodology alone.
+> **The red line with Superpowers (memorize this):** OpenSpec owns *what to build and the contract* (proposals, specs, design, tasks). The methodology layer — [[superpowers]] (its §brainstorming / §writing-plans / §test-driven-development / §systematic-debugging / §verification-before-completion disciplines) — owns *how to build and the quality*. This skill reads specs; it does **not** redefine the requirement baseline. Light projects can skip OpenSpec entirely and run on methodology alone.
 
 ---
 
@@ -136,7 +136,7 @@ Any time the task touches the company Lina framework: scaffolding a new microser
 ## When NOT to use
 
 - Light, single-dev, short-lived work with no cross-session memory needs — methodology layer + [[ponytail]] is enough. Don't pay the spec tax.
-- Debugging a concrete bug — use [[systematic-debugging]]. (You may *read* specs to understand intended behavior, but don't run the propose loop mid-bug.)
+- Debugging a concrete bug — use [[superpowers]] §systematic-debugging. (You may *read* specs to understand intended behavior, but don't run the propose loop mid-bug.)
 - The task touches no Lina module — Part B has nothing to route to; Part A may still apply if you want a contract trail.
 
 ## Anti-patterns (Never)
@@ -149,7 +149,7 @@ Any time the task touches the company Lina framework: scaffolding a new microser
 
 ## Collaborates with
 
-- **Superpowers methodology layer** — orthogonal. OpenSpec = *what/contract*; [[brainstorming]]/[[writing-plans]]/[[test-driven-development]]/[[verification-before-completion]] = *how/quality*. Per the red line, one owns the baseline, the other owns execution — neither crosses over.
+- **Superpowers methodology layer** — orthogonal. OpenSpec = *what/contract*; [[superpowers]] (its §brainstorming / §writing-plans / §test-driven-development / §verification-before-completion) = *how/quality*. Per the red line, one owns the baseline, the other owns execution — neither crosses over.
 - **[[trellis]]** — sibling at the engineering-framework tier. Trellis is the persistence + orchestration frame; OpenSpec is the contract layer. For a heavy project you might use both: OpenSpec to negotiate the contract, Trellis to keep it + the tasks + memory coherent across agents.
 - **[[grill-me]]** — the `propose` phase's interview instinct is the same: drive soft spots into the open before building.
 - **`lina-*` skills** — Part B is a router to them; they are the destinations, this skill is the switchboard.

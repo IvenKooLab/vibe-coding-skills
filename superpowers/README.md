@@ -24,13 +24,9 @@ superpowers/
 │  └─ skill编写规范.md              # ★ 跨工具 skill 编写规范(核心,先读这个)
 ├─ _template\
 │  └─ SKILL.md                     # 可直接套用的标准模板
-├─ skills\                         # 6 个 skills(1 开关 + 5 方法论,中文)
-│  ├─ superpowers\                 #   总开关(/superpowers 一键启用整套流程)
-│  ├─ brainstorming\              #   需求澄清
-│  ├─ writing-plans\              #   编写实施计划
-│  ├─ test-driven-development\    #   测试驱动开发
-│  ├─ systematic-debugging\        #   系统化调试
-│  └─ verification-before-completion\  # 完成前验证
+├─ skills\                         # 1 个 skill(单文件含 5 个方法论纪律,英文正文)
+│  └─ superpowers\                 #   总开关 + 5 纪律(brainstorming/writing-plans/
+│     └─ SKILL.md                  #   TDD/systematic-debugging/verification)
 ├─ commands\
 │  └─ superpowers.md               # /superpowers 开关命令(Claude Code slash command)
 ├─ bootstrap\
@@ -49,17 +45,18 @@ superpowers/
 
 ---
 
-## 一键开关 + 5 个方法论 skills
+## 一键开关 + 5 个方法论纪律(单 skill)
 
-> 💡 **skill 正文已改为英文**(AI 加载英文比中文省约 30% token);**中文说明就看本节**。
+> 💡 **skill 正文为英文**(AI 加载英文比中文省约 30% token);**中文说明就看本节**。
+>
+> 5 个纪律已合并进**单个 `superpowers` skill**(`skills/superpowers/SKILL.md`),与 grill-me / ponytail / openspec / Trellis 四个兄弟包结构对齐(一包一 SKILL.md)。
 
-不想逐个记 skill 名字?对 agent 说一句 **`/superpowers`**(Claude Code)或**「启用 superpowers」**(Qoder),本会话后续所有任务自动按下表流程执行。说「停用 superpowers」退出。
+不想逐个记纪律名字?对 agent 说一句 **`/superpowers`**(Claude Code)或**「启用 superpowers」**(Qoder),本会话后续所有任务自动按下表流程执行。说「停用 superpowers」退出。
 
-### 各 skill 中文说明
+### 5 个纪律的中文说明
 
-| Skill(英文文件名) | 中文名 | 什么时候用 / 做什么 |
+| 纪律 | 中文名 | 什么时候用 / 做什么 |
 |---|---|---|
-| `superpowers` | 总开关 | 说 `/superpowers` 或「启用 superpowers」——一次性开启整套流程,后续任务自动走下面 5 步 |
 | `brainstorming` | 需求澄清 | 新增功能/重构/修复杂 bug 前——先提问澄清、给 2-3 个方案、分块确认,确认后再动手 |
 | `writing-plans` | 编写实施计划 | 需求确认后、动手前——拆成 2-5 分钟可执行任务,每个含文件路径 + 验证步骤 |
 | `test-driven-development` | 测试驱动开发 | 写/改业务逻辑、修 bug——先写会失败的测试(RED),再写最小实现(GREEN),再重构 |

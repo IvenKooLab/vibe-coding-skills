@@ -47,13 +47,13 @@ $End         = "<!-- superpowers-sinosafe:end -->"
 $LegacyBegin = "<!-- superpower-sinosafe:begin -->"
 $LegacyEnd   = "<!-- superpower-sinosafe:end -->"
 
-$SkillNames = @(
-  "superpowers",
-  "brainstorming",
-  "writing-plans",
-  "test-driven-development",
-  "systematic-debugging",
-  "verification-before-completion"
+# brainstorming / writing-plans / test-driven-development / systematic-debugging /
+# verification-before-completion were merged into the single `superpowers` skill.
+$SkillNames = @("superpowers")
+# pre-merge per-discipline dirs cleaned up by Remove-LegacySkillDir (fingerprinted).
+$MergedLegacyDirs = @(
+  "brainstorming", "writing-plans", "test-driven-development",
+  "systematic-debugging", "verification-before-completion"
 )
 
 if ($WithAll) { $WithClaude = $true; $WithQoder = $true; $WithTrae = $true }
@@ -114,12 +114,24 @@ function Test-OurLegacyFile {
 
 function Remove-LegacySkillDir {
   param([string]$SkillsDir)
+  # 1) clean the oldest single-name "superpower" (pre-rename) dir
   $ld = Join-Path $SkillsDir "superpower"
-  if (-not (Test-Path $ld)) { return }
-  if (Test-OurLegacyDir $ld) {
-    Step { Remove-Item -Recurse -Force $ld -ErrorAction SilentlyContinue }
-  } else {
-    Write-Host "    [skip] $ld - fingerprint mismatch, not our legacy, left untouched."
+  if (Test-Path $ld) {
+    if (Test-OurLegacyDir $ld) {
+      Step { Remove-Item -Recurse -Force $ld -ErrorAction SilentlyContinue }
+    } else {
+      Write-Host "    [skip] $ld - fingerprint mismatch, not our legacy, left untouched."
+    }
+  }
+  # 2) clean the 5 pre-merge per-discipline dirs (merged into superpowers)
+  foreach ($d in $MergedLegacyDirs) {
+    $ld = Join-Path $SkillsDir $d
+    if (-not (Test-Path $ld)) { continue }
+    if (Test-OurLegacyDir $ld) {
+      Step { Remove-Item -Recurse -Force $ld -ErrorAction SilentlyContinue }
+    } else {
+      Write-Host "    [skip] $ld - fingerprint mismatch, not our legacy, left untouched."
+    }
   }
 }
 

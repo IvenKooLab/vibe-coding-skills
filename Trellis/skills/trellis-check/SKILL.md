@@ -53,7 +53,7 @@ Report violations found and fix them directly. Re-run project checks after fixes
 
 ## Anti-patterns (Never)
 
-- **Never** skip the project's lint/type/test gate because "it probably passes" — run it. (This is the [[verification-before-completion]] instinct made concrete.)
+- **Never** skip the project's lint/type/test gate because "it probably passes" — run it. (This is the [[superpowers]] §verification-before-completion instinct made concrete.)
 - **Never** leave a debug log or a suppressed warning in to make a check "pass."
 - **Never** finish without asking whether the discovery warrants a spec update — that's how the next session gets smarter.
 - **Never** flag a ponytail-style minimal self-check as a defect — a single `assert`/smoke test is the floor, not bloat (see [[ponytail]]).
@@ -61,4 +61,4 @@ Report violations found and fix them directly. Re-run project checks after fixes
 ## Collaborates with
 
 - The Verify phase of [[trellis]]. For the over-engineering lens specifically (what to *delete*), add [[ponytail-review]]; this skill covers correctness/compliance, that one covers complexity.
-- Mirrors and extends [[verification-before-completion]] with spec-compliance and cross-layer dimensions.
+- Mirrors and extends [[superpowers]] §verification-before-completion with spec-compliance and cross-layer dimensions.

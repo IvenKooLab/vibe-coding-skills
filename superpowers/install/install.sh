@@ -39,12 +39,11 @@ LEGACY_END="<!-- superpower-sinosafe:end -->"
 
 SKILL_NAMES=(
   superpowers
-  brainstorming
-  writing-plans
-  test-driven-development
-  systematic-debugging
-  verification-before-completion
 )
+# Note: brainstorming / writing-plans / test-driven-development / systematic-debugging /
+# verification-before-completion were merged into the single `superpowers` skill. The
+# array above is the only skill dir installed now; old per-discipline dirs are cleaned
+# up by cleanup_legacy_skills_dir (fingerprinted on "superpowers").
 
 # --- argument parsing ---
 DRY_RUN=0
@@ -117,13 +116,24 @@ rm_legacy_file() { # $1=path $2=fingerprint needle
 }
 
 cleanup_legacy_skills_dir() { # $1=skills dir
+  # 1) clean the oldest single-name "superpower" (pre-rename) dir
   local ld="$1/superpower"
-  [ -d "$ld" ] || return 0
-  if is_our_legacy_dir "$ld"; then
-    run rm -rf "$ld"
-  else
-    echo "    [skip] $ld - fingerprint mismatch, not our legacy, left untouched."
-  fi
+  [ -d "$ld" ] && {
+    if is_our_legacy_dir "$ld"; then run rm -rf "$ld"
+    else echo "    [skip] $ld - fingerprint mismatch, not our legacy, left untouched."
+    fi
+  }
+  # 2) clean the 5 pre-merge per-discipline dirs (merged into superpowers)
+  local d
+  for d in brainstorming writing-plans test-driven-development systematic-debugging verification-before-completion; do
+    ld="$1/$d"
+    [ -d "$ld" ] || continue
+    if is_our_legacy_dir "$ld"; then
+      run rm -rf "$ld"
+    else
+      echo "    [skip] $ld - fingerprint mismatch, not our legacy, left untouched."
+    fi
+  done
 }
 
 copy_skills_to() { # $1=dest skills dir

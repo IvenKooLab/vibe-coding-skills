@@ -1,5 +1,5 @@
 @echo off
-setlocal enableextensions
+setlocal enableextensions enabledelayedexpansion
 
 rem ===========================================================================
 rem  superpowers skill set - one-click deploy to Claude Code / Qoder / Trae (pure cmd)
@@ -47,7 +47,9 @@ set "SRC_COMMANDS=%REPO_ROOT%\commands"
 set "SNIPPET=%REPO_ROOT%\bootstrap\CLAUDE.md.snippet"
 set "QODER_RULE=%REPO_ROOT%\bootstrap\qoder-rule.md"
 
-set "SKILLS=superpowers brainstorming writing-plans test-driven-development systematic-debugging verification-before-completion"
+rem SKILLS: brainstorming / writing-plans / test-driven-development / systematic-debugging /
+rem   verification-before-completion were merged into the single `superpowers` skill.
+set "SKILLS=superpowers"
 set "BEGIN=superpowers-sinosafe:begin"
 
 rem --- legacy (old single-name "superpower") markers we clean up ---
@@ -267,17 +269,31 @@ goto :eof
 
 rem ===========================================================================
 rem  :cleanup_legacy_skills_dir  %1 = skills dir
-rem    Removes <skills>\superpower\ only if :is_our_legacy_dir confirms it is ours.
+rem    Removes <skills>\superpower\ (pre-rename) AND the 5 pre-merge per-discipline
+rem    dirs (brainstorming / writing-plans / ...) if :is_our_legacy_dir confirms ours.
 rem ===========================================================================
 :cleanup_legacy_skills_dir
 set "LD=%~1\%LEGACY_DIR%"
-if not exist "%LD%\SKILL.md" goto :eof
-call :is_our_legacy_dir "%LD%"
-if errorlevel 1 (
-  echo     [skip] "%LD%" - fingerprint mismatch, not our legacy, left untouched.
-  goto :eof
+if exist "%LD%\SKILL.md" (
+  call :is_our_legacy_dir "%LD%"
+  if errorlevel 1 (
+    echo     [skip] "%LD%" - fingerprint mismatch, not our legacy, left untouched.
+  ) else (
+    call :rm_dir "%LD%"
+  )
 )
-call :rm_dir "%LD%"
+rem  clean the 5 pre-merge per-discipline dirs (merged into superpowers)
+for %%D in (brainstorming writing-plans test-driven-development systematic-debugging verification-before-completion) do (
+  set "LD=%~1\%%D"
+  if exist "!LD!\SKILL.md" (
+    call :is_our_legacy_dir "!LD!"
+    if errorlevel 1 (
+      echo     [skip] "!LD!" - fingerprint mismatch, not our legacy, left untouched.
+    ) else (
+      call :rm_dir "!LD!"
+    )
+  )
+)
 goto :eof
 
 rem ===========================================================================

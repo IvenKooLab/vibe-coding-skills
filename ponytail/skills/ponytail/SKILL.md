@@ -66,8 +66,8 @@ Never lazy about **understanding the problem** — the ladder shortens the solut
 
 ## Collaborates with
 
-- Pairs cleanly with the methodology layer ([[brainstorming]], [[writing-plans]], [[test-driven-development]]) — ponytail governs the *shape of the code* those skills produce.
-- The "one runnable check" rule is the lazy cousin of [[verification-before-completion]] — leave a check, then let the full verification skill run the gate.
+- Pairs cleanly with the methodology layer ([[superpowers]] — its §brainstorming / §writing-plans / §test-driven-development disciplines) — ponytail governs the *shape of the code* those skills produce.
+- The "one runnable check" rule is the lazy cousin of [[superpowers]] §verification-before-completion — leave a check, then let the full verification skill run the gate.
 - Sub-skills: [[ponytail-review]] (diff over-engineering review), [[ponytail-audit]] (whole-repo), [[ponytail-debt]] (track `ponytail:` shortcuts), [[ponytail-gain]] (impact scoreboard), [[ponytail-help]] (reference card).
 
 The shortest path to done is the right path.

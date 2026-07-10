@@ -112,8 +112,8 @@ cp -r skills/* <项目>/.claude/skills/
 
 ## 和其他技能的关系
 
-- 与方法论层([[brainstorming]] / [[writing-plans]] / [[test-driven-development]])正交叠加:ponytail 管**产出的代码长什么样**。
-- 「留一个可跑的检查」是 [[verification-before-completion]] 的懒人版——先留个检查,再让完整验证 skill 跑闸门。
+- 与方法论层([[superpowers]] 的 brainstorming / writing-plans / test-driven-development 纪律)正交叠加:ponytail 管**产出的代码长什么样**。
+- 「留一个可跑的检查」是 [[superpowers]] verification-before-completion 纪律的懒人版——先留个检查,再让完整验证 skill 跑闸门。
 
 ---
 
