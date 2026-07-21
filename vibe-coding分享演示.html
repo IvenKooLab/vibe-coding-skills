@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>vibe-coding · 科室分享</title>
+<style>
+* { box-sizing: border-box; }
+body { font-family: "Microsoft YaHei", "微软雅黑", SimSun, serif; font-size: 17px; line-height: 1.75; color: #333; margin: 0; background: #f7f9fc; }
+
+/* 顶部导航 */
+.nav { position: sticky; top: 0; z-index: 100; background: #1a4480; padding: 10px 24px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+.nav-brand { color: #fff; font-weight: 700; margin-right: 18px; font-size: 16px; }
+.nav a { color: #cfe0f5; text-decoration: none; padding: 5px 11px; border-radius: 4px; font-size: 14px; transition: all .15s; }
+.nav a:hover { background: rgba(255,255,255,0.15); color: #fff; }
+.nav a.active { background: #fff; color: #1a4480; font-weight: 600; }
+
+/* 主容器 */
+.wrap { max-width: 1180px; margin: 0 auto; padding: 28px 28px 80px; }
+
+/* 标题层级 */
+h1.title { font-size: 34px; text-align: center; color: #1a4480; border-bottom: 4px solid #1a4480; padding-bottom: 14px; margin: 16px 0 10px; line-height: 1.3; }
+.subtitle { text-align: center; color: #666; font-size: 17px; margin-bottom: 24px; }
+h2 { font-size: 23px; color: #fff; background: #1a4480; padding: 9px 16px; margin: 44px 0 18px; border-radius: 4px; }
+h3 { font-size: 19px; color: #1a4480; border-left: 5px solid #1a4480; padding: 4px 0 4px 12px; margin: 28px 0 12px; }
+h4 { font-size: 17px; color: #1a4480; margin: 20px 0 8px; }
+
+/* 引用块 */
+.section-intro { background: #eef3fa; border-left: 5px solid #1a4480; padding: 11px 16px; margin: 14px 0; font-size: 16px; border-radius: 0 4px 4px 0; }
+.quote { background: #fff8e1; border-left: 5px solid #f5a623; padding: 11px 16px; margin: 14px 0; font-size: 16px; border-radius: 0 4px 4px 0; }
+.quote strong { color: #b8860b; }
+
+/* 表格 */
+table { border-collapse: collapse; width: 100%; margin: 14px 0; font-size: 15.5px; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+th { background: #1a4480; color: #fff; padding: 9px 10px; text-align: left; border: 1px solid #1a3a6e; font-weight: 600; }
+td { padding: 8px 10px; border: 1px solid #ccc; vertical-align: top; }
+tr:nth-child(even) td { background: #f0f4fa; }
+
+/* 强调 */
+.hl { color: #c0392b; font-weight: 700; }
+.tag { display: inline-block; padding: 2px 9px; border-radius: 10px; font-size: 13px; font-weight: 600; margin-right: 4px; }
+.tag-blue { background: #e3edf7; color: #1a4480; }
+.tag-green { background: #e3f6e3; color: #2a7a2a; }
+.tag-orange { background: #fdebd0; color: #b8651b; }
+.tag-red { background: #fbe3e0; color: #a93226; }
+.tag-gray { background: #eee; color: #555; }
+
+/* 封面卡 */
+.cover { text-align: center; padding: 30px 20px 36px; background: linear-gradient(135deg, #1a4480 0%, #2a5ca0 100%); color: #fff; border-radius: 8px; margin-bottom: 30px; }
+.cover h1 { color: #fff; border: none; font-size: 36px; margin: 0 0 14px; line-height: 1.25; }
+.cover .sub { font-size: 18px; opacity: 0.92; margin-bottom: 8px; }
+.cover .hook { display: inline-block; margin-top: 16px; padding: 10px 22px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; font-size: 16px; }
+.cover .git { margin-top: 20px; font-size: 14px; opacity: 0.85; font-family: Consolas, monospace; }
+
+/* 对比卡 */
+.pain-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 16px 0; }
+.pain { background: #fff; border-left: 5px solid #c0392b; padding: 13px 16px; border-radius: 0 4px 4px 0; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.pain .n { display: inline-block; width: 24px; height: 24px; line-height: 24px; text-align: center; background: #c0392b; color: #fff; border-radius: 50%; font-size: 14px; font-weight: 700; margin-right: 8px; }
+.pain h4 { margin: 0 0 6px; color: #c0392b; font-size: 16px; }
+.pain p { margin: 0; font-size: 14.5px; color: #444; }
+
+/* 取舍对照 */
+.fix { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 14px 0 8px; }
+.fix .col { padding: 12px 14px; border-radius: 4px; font-size: 14.5px; }
+.fix .pain-c { background: #fbe3e0; border: 1px solid #e6b3aa; }
+.fix .design-c { background: #eef3fa; border: 1px solid #aac0e0; }
+.fix .effect-c { background: #e3f6e3; border: 1px solid #a0d8a0; }
+.fix .col h5 { margin: 0 0 6px; font-size: 14px; font-weight: 700; }
+.fix .pain-c h5 { color: #a93226; }
+.fix .design-c h5 { color: #1a4480; }
+.fix .effect-c h5 { color: #2a7a2a; }
+
+/* 架构图 */
+.arch { background: #fff; border: 1px solid #ccc; border-radius: 6px; padding: 18px; margin: 14px 0; font-family: Consolas, "Courier New", monospace; font-size: 13.5px; line-height: 1.5; overflow-x: auto; }
+.arch .layer { padding: 7px 12px; margin: 4px 0; border-radius: 3px; color: #fff; font-weight: 600; }
+.arch .l-vibe { background: #c0392b; }
+.arch .l-pre { background: #e67e22; }
+.arch .l-method { background: #1a4480; }
+.arch .l-disc { background: #27ae60; }
+.arch .l-fw { background: #8e44ad; }
+.arch .l-spec { background: #2980b9; }
+.arch .l-base { background: #555; margin-top: 10px; font-size: 12.5px; }
+.arch .arrow { text-align: center; color: #999; font-size: 14px; margin: 2px 0; }
+
+/* 终端 demo */
+.terminal { background: #1e1e1e; border-radius: 8px; margin: 18px 0; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+.terminal-bar { background: #323233; padding: 9px 14px; display: flex; align-items: center; gap: 7px; }
+.terminal-bar .dot { width: 12px; height: 12px; border-radius: 50%; }
+.terminal-bar .r { background: #ff5f56; } .terminal-bar .y { background: #ffbd2e; } .terminal-bar .g { background: #27c93f; }
+.terminal-bar .name { color: #aaa; font-size: 13px; margin-left: 8px; font-family: Consolas, monospace; }
+.terminal-body { padding: 18px; font-family: Consolas, "Courier New", monospace; font-size: 14.5px; color: #d4d4d4; min-height: 320px; }
+.terminal-body .prompt { color: #27c93f; }
+.terminal-body .user { color: #569cd6; }
+.terminal-body .ai { color: #c586c0; }
+.terminal-body .dim { color: #888; }
+.terminal-body .menu-line { padding: 3px 0; }
+
+/* demo 卡片 */
+.demo-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 14px 0; }
+.demo-card { background: #2d2d30; border: 2px solid #3d3d40; border-radius: 6px; padding: 13px 15px; cursor: pointer; transition: all .2s; }
+.demo-card:hover { border-color: #569cd6; background: #2a2d3a; transform: translateY(-1px); }
+.demo-card.selected { border-color: #27c93f; background: #1e3a1e; }
+.demo-card .dc-head { color: #fff; font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+.demo-card .dc-letter { display: inline-block; width: 26px; height: 26px; line-height: 26px; text-align: center; background: #569cd6; color: #fff; border-radius: 50%; font-size: 14px; margin-right: 7px; }
+.demo-card.selected .dc-letter { background: #27c93f; }
+.demo-card .dc-desc { color: #bbb; font-size: 13px; margin-bottom: 4px; }
+.demo-card .dc-packs { color: #888; font-size: 12.5px; }
+
+/* demo 按钮 */
+.demo-btn { background: #569cd6; color: #fff; border: none; padding: 9px 20px; border-radius: 4px; font-size: 14px; cursor: pointer; font-family: inherit; margin: 4px 6px 4px 0; transition: all .15s; }
+.demo-btn:hover { background: #4a87c0; }
+.demo-btn.reset { background: #c0392b; }
+.demo-btn.reset:hover { background: #a93226; }
+.demo-btn.go { background: #27c93f; }
+.demo-btn.go:hover { background: #22a135; }
+.demo-btn:disabled { background: #555; cursor: not-allowed; opacity: 0.6; }
+
+/* 步骤指示 */
+.demo-step { display: inline-block; padding: 3px 11px; background: #3d3d40; color: #aaa; border-radius: 10px; font-size: 12.5px; margin-left: 10px; }
+.demo-step.active { background: #27c93f; color: #fff; }
+
+/* 转交结果 */
+.handoff { background: #1a2a1a; border: 1px solid #27c93f; border-radius: 5px; padding: 12px 14px; margin-top: 12px; font-size: 13.5px; }
+.handoff .h-label { color: #27c93f; font-weight: 700; margin-bottom: 6px; }
+.handoff .h-row { color: #ccc; margin: 3px 0; }
+.handoff .h-row strong { color: #ffbd2e; }
+
+/* 数字卡 */
+.stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 16px 0; }
+.stat { background: #fff; border-top: 4px solid #1a4480; padding: 14px; text-align: center; border-radius: 0 0 4px 4px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.stat .num { font-size: 30px; font-weight: 800; color: #1a4480; line-height: 1.1; }
+.stat .lbl { font-size: 13px; color: #666; margin-top: 4px; }
+
+/* 安装卡 */
+.install-step { background: #fff; border-left: 4px solid #27ae60; padding: 12px 16px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+.install-step .step-n { display: inline-block; background: #27ae60; color: #fff; width: 24px; height: 24px; line-height: 24px; text-align: center; border-radius: 50%; font-weight: 700; margin-right: 8px; font-size: 14px; }
+.install-step code { background: #f0f4fa; padding: 1px 6px; border-radius: 3px; font-size: 14px; color: #1a4480; }
+
+/* 页脚 */
+.foot { text-align: center; margin-top: 50px; padding-top: 24px; border-top: 2px solid #1a4480; color: #888; font-size: 14px; }
+
+/* 通用 */
+p { margin: 9px 0; }
+ul, ol { margin: 9px 0; padding-left: 26px; }
+li { margin: 4px 0; }
+code { background: #f0f4fa; padding: 1px 6px; border-radius: 3px; font-family: Consolas, monospace; font-size: 14.5px; color: #c0392b; }
+.tip { font-size: 14px; color: #888; font-style: italic; margin-top: 6px; }
+
+@media (max-width: 760px) {
+  .pain-grid, .demo-cards, .stat-grid { grid-template-columns: 1fr; }
+  .fix { grid-template-columns: 1fr; }
+  .nav { gap: 2px; padding: 8px 12px; }
+  .nav a { padding: 4px 7px; font-size: 12.5px; }
+  .wrap { padding: 18px 14px 60px; }
+}
+</style>
+</head>
+<body>
+
+<div class="nav" id="nav">
+  <span class="nav-brand">vibe-coding</span>
+  <a href="#cover" class="active">封面</a>
+  <a href="#review">1·对比</a>
+  <a href="#sixpack">2·六包</a>
+  <a href="#fix">3·取舍</a>
+  <a href="#demo">4·demo</a>
+  <a href="#nacos">5·实践</a>
+  <a href="#install">6·安装</a>
+  <a href="#end">7·总结</a>
+</div>
+
+<div class="wrap">
+
+<!-- ============ 0. 封面 ============ -->
+<div id="cover">
+<div class="cover">
+  <h1>vibe-coding · AI 编码方法论合集</h1>
+  <div class="sub">把业界优秀的方法论,蒸馏成一套可移植的六包 + 两个日常实践</div>
+  <div class="sub">营销与客服开发室 · AI 编程分享 · 2026-07</div>
+  <div class="hook">💡 一套<strong>可移植、跨工具通吃</strong>的 AI 编码方法论合集——六个包各管一段,<code>/vibe</code> 做总入口</div>
+  <div class="git">git: http://git.sinosafe.com.cn/marketing_customer_service/vibe-coding.git</div>
+</div>
+
+<div class="section-intro">
+<strong>这次分享分三块:</strong>
+<ul style="margin: 8px 0 0;">
+<li><span class="tag tag-blue">方法论</span>vibe-coding 六包——和 superspecflow 是<strong>两种风格</strong>,不是替代关系</li>
+<li><span class="tag tag-green">日常实践</span>nacos2-mcp(让 AI 读配置)+ Obsidian Templater(笔记提效)——自己造的轮子和用的小工具</li>
+<li><span class="tag tag-orange">互动</span>现场 demo <code>/vibe</code> 两段式菜单</li>
+</ul>
+</div>
+</div>
+
+<!-- ============ 1. 回顾 superspecflow ============ -->
+<h2 id="review">一、背景:superspecflow 与 vibe-coding 是两种风格</h2>
+
+<div class="section-intro">
+公司内部已经有多套 AI 编码方法论的实践。<strong>superspecflow</strong> 是其中一种:用 OpenSpec 做"项目的宪法",用 Superpowers 做"AI 的技能包",三阶段命令对应开发流程。vibe-coding 是另一种风格,放一起对照看,各有适用场景。
+</div>
+
+<h3>superspecflow 的核心结构</h3>
+<table>
+<tr><th style="width:18%">组件</th><th style="width:32%">定位</th><th style="width:30%">产物</th><th style="width:20%">命令</th></tr>
+<tr><td><strong>OpenSpec</strong></td><td>项目的"宪法"——规格契约,所有需求/设计沉淀进仓库 spec</td><td>proposal / design / specs / tasks 四件套</td><td><code>/propose</code></td></tr>
+<tr><td><strong>Superpowers</strong></td><td>AI 的"技能包"——标准化的子 Skill 集(澄清/计划/TDD/调试/验证)</td><td>按计划执行 + 完成前验证</td><td><code>/apply</code></td></tr>
+<tr><td><strong>归档收尾</strong></td><td>交付前的质检——把变更回写进主规格</td><td>归档的 change + 更新后的 specs</td><td><code>/archive</code></td></tr>
+</table>
+
+<h3>两种风格,各有适用场景</h3>
+<p>听完他们的分享,我做 vibe-coding 时走了<strong>另一条路</strong>——不是替代,是另一种取舍。两者适合不同场景:</p>
+
+<table>
+<tr><th style="width:20%">维度</th><th style="width:40%">superspecflow(理赔)</th><th style="width:40%">vibe-coding(本室)</th></tr>
+<tr><td><strong>定位</strong></td><td>重型、流程化、契约驱动</td><td>轻量、按需、可移植</td></tr>
+<tr><td><strong>适合项目</strong></td><td><span class="tag tag-blue">中大型</span>跨会话、多 agent、需要需求契约留痕</td><td><span class="tag tag-green">轻量/中</span>单人、多项目复用、跨工具混用</td></tr>
+<tr><td><strong>流程颗粒度</strong></td><td>三阶段全流程,每步暂停确认</td><td><code>/vibe</code> 按需路由,想用哪步用哪步</td></tr>
+<tr><td><strong>跨工具</strong></td><td>脚本适配器生成</td><td>字节同构(一份 SKILL.md 三处生效)</td></tr>
+<tr><td><strong>学习成本</strong></td><td>需理解 OpenSpec + Superpowers + 三命令</td><td>记一个 <code>/vibe</code> 就够</td></tr>
+<tr><td><strong>典型场景</strong></td><td>新需求走完整 <code>propose→apply→archive</code></td><td>改 bug → <code>/grill-me</code>;嫌啰嗦 → <code>/ponytail</code></td></tr>
+</table>
+
+<div class="quote">
+<strong>一句话:</strong>superspecflow 像正规军重装师(流程严谨、契约留痕),vibe-coding 像特种兵小队(轻便灵活、随取随用)。<strong>选哪种,看你的项目规模和协作方式。</strong>重型项目完全可以两者叠加——用 OpenSpec 定契约,用 vibe-coding 的轻量包做日常。
+</div>
+
+<!-- ============ 2. vibe-coding 六包 ============ -->
+<h2 id="sixpack">二、vibe-coding 的解法:六个包</h2>
+
+<div class="section-intro">
+vibe-coding 不是 superspecflow 的替代,是<strong>另一种风格</strong>——把业界优秀的方法论(skill)蒸馏成一套标准包,任何项目、任何工具(Claude Code / Qoder / Trae)装上即用。
+</div>
+
+<h3>分层架构(一图看懂)</h3>
+<div class="arch">
+<div class="layer l-vibe">🚪 总入口层　vibe　　　　/vibe 弹菜单 → 选包 → 带上下文转交(自研路由器)</div>
+<div class="arrow">↓ 路由分发</div>
+<div class="layer l-pre">🎯 需求拷问层　grill-me　　动手前对计划做"无情盘问",一次问一个,直到共识</div>
+<div class="layer l-method">📘 方法论层　　superpowers　动手前澄清→拆计划→TDD→系统化调试→完成前验证(5 纪律合一)</div>
+<div class="layer l-disc">✂️ 精简纪律层　ponytail　　像最懒的资深开发:能不写就不写,能一行就一行</div>
+<div class="layer l-fw">🏗 工程框架层　Trellis　　　spec/task/memory 持久化 + 多 agent 协作</div>
+<div class="layer l-spec">📋 规格契约层　openspec　　需求/契约沉淀成仓库 spec(唯一可信基线)</div>
+<div class="arrow">↓ 调用 / 交叉引用</div>
+<div class="layer l-base">🏢 框架知识层(公司已有 lina-*):lina-redis · lina-rabbitmq · lina-mybatis · ...　openspec Part B 路由到这里</div>
+</div>
+
+<h3>六包一览(真实数据)</h3>
+<table>
+<tr><th style="width:13%">包</th><th style="width:14%">层</th><th style="width:43%">一句话</th><th style="width:18%">SKILL.md</th><th style="width:12%">来源</th></tr>
+<tr><td><code>vibe</code></td><td>总入口层</td><td>拿不准用哪个包时 <code>/vibe</code> 弹菜单,选一个,带上下文转交</td><td>1 个 / 99 行</td><td><span class="tag tag-gray">自研</span></td></tr>
+<tr><td><code>superpowers</code></td><td>方法论层</td><td>动手前澄清→拆计划→TDD→系统化调试→完成前验证</td><td>1 个 / 315 行(5 纪律合一)</td><td><span class="tag tag-blue">obra/MIT</span></td></tr>
+<tr><td><code>grill-me</code></td><td>需求拷问层</td><td>动手前对计划做"无情盘问",逐个走完决策树</td><td>1 个 / 61 行</td><td><span class="tag tag-blue">mattpocock</span></td></tr>
+<tr><td><code>ponytail</code></td><td>精简纪律层</td><td>像最懒的资深开发:能不写就不写,懒而不疏忽</td><td>6 个 / 核心 73 行</td><td><span class="tag tag-blue">DietrichGebert/MIT</span></td></tr>
+<tr><td><code>Trellis</code></td><td>工程框架层</td><td>spec/task/memory 持久化进仓库 + 多 agent 协作</td><td>4 个 / 核心 62 行</td><td><span class="tag tag-orange">mindfold/AGPL</span></td></tr>
+<tr><td><code>openspec</code></td><td>规格契约层</td><td>需求/契约沉淀成仓库 spec;涉及 Lina 时路由到 lina-*</td><td>1 个 / 155 行</td><td><span class="tag tag-blue">Fission-AI/MIT</span></td></tr>
+</table>
+
+<div class="stat-grid">
+<div class="stat"><div class="num">6</div><div class="lbl">个独立包</div></div>
+<div class="stat"><div class="num">14</div><div class="lbl">个 SKILL.md</div></div>
+<div class="stat"><div class="num">315</div><div class="lbl">行最大文件(superpowers 合一)</div></div>
+<div class="stat"><div class="num">35</div><div class="lbl">行最小文件(ponytail-audit)</div></div>
+</div>
+
+<div class="section-intro">
+<strong>关键设计:每个包都是"一包一 SKILL.md"</strong>——和 grill-me/openspec 同构。superpowers 原本是 1 开关 + 5 执行共 6 个文件,为了和其他兄弟对齐,<span class="hl">把 5 纪律合并进了 1 个单文件</span>(315 行,仍 &lt; 500 红线)。这样 <code>/vibe</code> 才能把"包"作为路由单位。
+</div>
+
+<!-- ============ 3. 设计取舍对比 ============ -->
+<h2 id="fix">三、设计取舍:两种风格背后的选择</h2>
+
+<div class="section-intro">
+没有完美方案,只有<strong>不同取舍</strong>。这一节把两种风格在关键决策点的差异摆出来,方便大家对照自己的项目选。
+</div>
+
+<h3>取舍 ①:流程颗粒度</h3>
+<div class="fix">
+<div class="col pain-c"><h5>superspecflow 选了</h5>三阶段全流程,每步暂停确认。<strong>换来了</strong>:流程严谨、契约留痕、可追溯。</div>
+<div class="col design-c"><h5>vibe-coding 选了</h5><code>/vibe</code> 按需路由,想用哪步用哪步。<strong>换来了</strong>:轻量、快速、小改动成本低。</div>
+<div class="col effect-c"><h5>各自的代价</h5>前者对熟练开发者有摩擦;后者缺少强制的全流程兜底,靠开发者自觉。明文规则:轻量项目可只用方法论层,不引入 OpenSpec。</div>
+</div>
+
+<h3>取舍 ②:跨工具适配方式</h3>
+<div class="fix">
+<div class="col pain-c"><h5>superspecflow 选了</h5>脚本"适配器"按工具生成不同格式。<strong>换来了</strong>:能针对每个工具做精细优化。</div>
+<div class="col design-c"><h5>vibe-coding 选了</h5><strong>字节同构</strong>:同一份 SKILL.md,Claude Code / Qoder / Trae 直接 cp 生效。<strong>换来了</strong>:维护一份源,零转换成本。</div>
+<div class="col effect-c"><h5>各自的代价</h5>前者维护脚本本身有成本;后者放弃了对单个工具的精细定制,换 IDE 不换 skill。</div>
+</div>
+
+<h3>取舍 ③:产出代码量</h3>
+<div class="fix">
+<div class="col pain-c"><h5>superspecflow 选了</h5>跑完整 brainstorming + writing-plans + TDD + code-review。<strong>换来了</strong>:质量把关环节多、覆盖全。</div>
+<div class="col design-c"><h5>vibe-coding 选了</h5>叠加 ponytail 的"梯子":YAGNI → 复用 → stdlib → 原生 → 一行 → 最小代码。<strong>换来了</strong>:代码量显著下降。</div>
+<div class="col effect-c"><h5>各自的代价</h5>前者 token 和时间成本高;后者精简可能漏掉一些"本该有"的环节(靠其他包补回)。<span class="hl">上游实测:ponytail 代码量均值 -54%</span>(成本 -20%、速度 -27%)。</div>
+</div>
+
+<h3>取舍 ④:协议策略</h3>
+<div class="fix">
+<div class="col pain-c"><h5>superspecflow 选了</h5>直接用上游完整 harness(npm install)。<strong>换来了</strong>:功能完整、自动化程度高。</div>
+<div class="col design-c"><h5>vibe-coding 选了</h5><strong>蒸馏而非搬运</strong>:只取方法论 + 中文说明,不搬源码。</div>
+<div class="col effect-c"><h5>各自的代价</h5>前者需遵守上游协议(如 AGPL 有传染性);后者协议干净(MIT 为主),但放弃了一些上游自动化能力。真正"硬"的约束都留给项目自己的 hook/CI。</div>
+</div>
+
+<div class="quote">
+<strong>一句话总结:</strong>两者是<strong>同一片光谱的两端</strong>——superspecflow 重型严谨,vibe-coding 轻量灵活。选哪种取决于项目规模和团队协作方式;中型以上项目完全可以两者叠加(用 OpenSpec 定契约 + 用 vibe-coding 的轻量包做日常)。
+</div>
+
+<!-- ============ 4. demo ============ -->
+<h2 id="demo">四、现场 demo:/vibe 两段式菜单</h2>
+
+<div class="section-intro">
+这是整个合集的总入口。<strong>纯路由器,不写码、不澄清、不计划</strong>——只负责弹菜单、让你选、带上下文转交。下面是模拟器,现场可点。
+</div>
+
+<h3>为什么是两段式?</h3>
+<p>5 个包,但工具的选择器卡片上限是 4 个(直接列 5 个会把第 5 个吞掉)。所以拆成两步:<strong>先选 4 大类,再展开该类里的具体包</strong>。5 个包全可达,不丢。</p>
+
+<div class="terminal">
+<div class="terminal-bar">
+<span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+<span class="name">vibe gateway · 模拟器</span>
+<span class="demo-step active" id="step-indicator">第 1 步:选大类</span>
+</div>
+<div class="terminal-body" id="term-body">
+
+<div id="stage-0">
+<div class="prompt">$ <span class="user">/vibe</span></div>
+<div class="ai dim">— vibe gateway 已就绪。你做哪类事?</div>
+<div style="margin-top: 12px;">
+<span class="demo-btn go" onclick="startDemo()">▶ 模拟输入 /vibe 回车</span>
+</div>
+</div>
+
+<div id="stage-1" style="display:none;">
+<div class="prompt">$ <span class="user">/vibe</span></div>
+<div class="ai">你要做哪类事?选一个大类:</div>
+<div class="demo-cards" style="margin-top: 10px;">
+<div class="demo-card" onclick="pickCategory('A', this)">
+<div class="dc-head"><span class="dc-letter">A</span>动手前 · 澄清与计划</div>
+<div class="dc-desc">需求还没想清楚 / 计划有隐患</div>
+<div class="dc-packs">含:superpowers、grill-me</div>
+</div>
+<div class="demo-card" onclick="pickCategory('B', this)">
+<div class="dc-head"><span class="dc-letter">B</span>规格与契约</div>
+<div class="dc-desc">需求要跨会话 / 团队共识 / 涉及 Lina</div>
+<div class="dc-packs">含:openspec</div>
+</div>
+<div class="demo-card" onclick="pickCategory('C', this)">
+<div class="dc-head"><span class="dc-letter">C</span>写码时 · 纪律与质量</div>
+<div class="dc-desc">嫌 AI 写太啰嗦 / 过度设计</div>
+<div class="dc-packs">含:ponytail</div>
+</div>
+<div class="demo-card" onclick="pickCategory('D', this)">
+<div class="dc-head"><span class="dc-letter">D</span>跨会话与协作</div>
+<div class="dc-desc">多 agent / 要记忆 / 团队共享</div>
+<div class="dc-packs">含:Trellis</div>
+</div>
+</div>
+</div>
+
+<div id="stage-2" style="display:none;">
+<div class="prompt">$ <span class="user">/vibe</span> → 选 <span id="cat-chosen">A</span></div>
+<div class="ai" id="stage2-prompt"></div>
+<div id="sub-cards" style="margin-top: 10px;"></div>
+</div>
+
+<div id="stage-3" style="display:none;">
+<div class="prompt">$ <span class="user">/vibe</span> → <span id="final-pack">openspec</span></div>
+<div class="ai">✅ 已选定,带上下文转交:</div>
+<div class="handoff" id="handoff-box"></div>
+<div style="margin-top: 14px;">
+<span class="demo-btn reset" onclick="resetDemo()">↺ 重置(再演示一次)</span>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="tip">💡 现场讲法:先点"模拟输入"弹 4 卡片 → 选 A 演示"展开二选一" → 选 B/C/D 演示"直接转交" → 最后展示"带上下文转交"的文本框。</div>
+
+<!-- ============ 5. 日常实践分享 ============ -->
+<h2 id="nacos">五、日常实践分享</h2>
+
+<div class="section-intro">
+方法论之外,再分享两个<strong>日常在用的实践</strong>——一个是我造的轮子(nacos2-mcp),一个是我在用的笔记工具(Obsidian 模板)。都是小东西,但切实解决了手头的问题。
+</div>
+
+<h3>实践一:nacos2-mcp —— 让 AI 读得到配置</h3>
+
+<div class="quote">
+<strong>现象:</strong>同一个逻辑,AI 反复写、反复错。
+<strong>根因:</strong>这些逻辑其实写在 <code>nacos</code> 配置上,但 AI 读不到 nacos 的内容,只能凭代码猜——猜错了就重写。
+</div>
+
+<table>
+<tr><th style="width:25%">环节</th><th style="width:75%">说明</th></tr>
+<tr><td><strong>查方案</strong></td><td>官方开源的 nacos-mcp <span class="hl">只支持 nacos 3.0+</span>,但我们部门用的是 <strong>Nacos 2.3.2</strong> —— 官方版用不了。</td></tr>
+<tr><td><strong>造轮子</strong></td><td>改了一个 <strong>nacos2-mcp</strong> 出来,兼容 2.x,供科室共用。具体用法见仓库内 README。</td></tr>
+<tr><td><strong>使用方式</strong></td><td>把本工程的 <code>dataId</code> 和 <code>group</code> 发给 mcp 即可,AI 自动读到配置内容,不用手动复制粘贴。</td></tr>
+<tr><td><strong>效果</strong></td><td>AI 能读全配置 → 不再凭空猜 → <span class="hl">重复写代码的问题从根上缓解</span>。</td></tr>
+</table>
+
+<div class="section-intro">
+<strong>git 地址:</strong><code>http://git.sinosafe.com.cn/marketing_customer_service/mcp.git</code>(与 vibe-coding 同级,都是科室 AI 分享仓库)
+</div>
+
+<h3>实践二:Obsidian + Templater —— 笔记提效</h3>
+
+<p>日常的会话纪要、需求笔记、踩坑记录,我都放 Obsidian。核心提效点是 <strong>Templater 插件</strong>——预设好模板,一键生成结构固定的笔记,不用每次从空白文档开始想格式。</p>
+
+<table>
+<tr><th style="width:22%">模板类型</th><th style="width:48%">模板内容</th><th style="width:30%">解决什么</th></tr>
+<tr><td><strong>会话纪要</strong></td><td>日期/参会人/议题/决议/待办(带负责人和截止)</td><td>会一开完,5 秒生成结构化纪要,不用事后补格式</td></tr>
+<tr><td><strong>需求笔记</strong></td><td>需求标题/背景/验收标准/影响范围/关联系统</td><td>接需求时按固定结构记录,后面喂给 AI 做上下文也方便</td></tr>
+<tr><td><strong>踩坑记录</strong></td><td>问题/根因/解决/预防/复现步骤</td><td>bug 改完顺手记一条,下次遇到同类问题能翻出来</td></tr>
+<tr><td><strong>技术调研</strong></td><td>问题/候选方案/对比维度/结论/参考链接</td><td>技术选型时有固定 checklist,不会漏维度</td></tr>
+</table>
+
+<div class="quote">
+<strong>为什么分享这个:</strong>笔记工具大家都在用,但很多人是"建个空文档就开始写"。Templater 的价值是<strong>把重复的结构劳动固化下来</strong>——和 vibe-coding 蒸馏方法论是同一个思路:把好的东西沉淀成可复用的模板,下次直接套。
+</div>
+
+<div class="section-intro">
+<strong>Obsidian 的安装和 Templater 配置</strong>网上教程很多,这里不展开;想看我那套模板的话可以会后找我拿。重点是<strong>思路</strong>:固定模板 + 一键生成,日常记录效率显著提升。
+</div>
+
+<!-- ============ 6. 安装 ============ -->
+<h2 id="install">六、怎么用:安装与上手</h2>
+
+<div class="section-intro">
+vibe-coding 的安装<strong>刻意做得很轻</strong>——没有重型 install 脚本,六个包全部手动 cp 即可。符合 ponytail"能不写就不写"的精神。
+</div>
+
+<div class="install-step">
+<span class="step-n">1</span><strong>clone 仓库</strong><br>
+<code>git clone http://git.sinosafe.com.cn/marketing_customer_service/vibe-coding.git</code>
+</div>
+
+<div class="install-step">
+<span class="step-n">2</span><strong>按工具 cp 到对应目录</strong>——一份 SKILL.md,三处生效(字节同构):
+<table style="margin-top: 8px;">
+<tr><th>工具</th><th>skills 落点</th><th>命令落点</th></tr>
+<tr><td>Claude Code(全局)</td><td><code>~/.claude/skills/&lt;包名&gt;/SKILL.md</code></td><td><code>~/.claude/commands/vibe.md</code></td></tr>
+<tr><td>Qoder(项目)</td><td><code>&lt;项目&gt;/.qoder/skills/&lt;包名&gt;/SKILL.md</code></td><td>Qoder 在 rule 层配</td></tr>
+<tr><td>Trae(项目)</td><td><code>&lt;项目&gt;/.trae/skills/&lt;包名&gt;/SKILL.md</code></td><td>同上</td></tr>
+</table>
+六个包全部手动 cp,无脚本依赖——最省心,也最符合"能不写就不写"。
+</div>
+
+<div class="install-step">
+<span class="step-n">3</span><strong>说 <code>/vibe</code> 开始</strong>
+</div>
+
+<div class="quote">
+<strong>一句话口诀:</strong>装好说 <code>/vibe</code>,记一个命令就够。拿不准用哪个包 → <code>/vibe</code> 弹菜单;清楚用哪个 → 直接 <code>/grill-me</code>、<code>/ponytail</code> 等指名调用,跳过菜单。
+</div>
+
+<!-- ============ 7. 总结 ============ -->
+<h2 id="end">七、总结与展望</h2>
+
+<h3>三句话总结</h3>
+<ol>
+<li><strong>vibe-coding 是 superspecflow 的"另一种风格"</strong>——不是替代关系,是同一光谱的两端。重项目可以叠加(OpenSpec 定契约 + vibe-coding 做日常),轻项目单独用 vibe-coding 就够。</li>
+<li><strong>六个包各管一段,<code>/vibe</code> 做总入口。</strong>从"动手前"到"完成前验证"到"跨会话记忆",每段都有专人;记不住用哪个时,<code>/vibe</code> 弹菜单帮你选。</li>
+<li><strong>蒸馏不搬运,跨工具通吃。</strong>MIT 为主,一份 SKILL.md 三处生效,任何项目都能装。</li>
+</ol>
+
+<h3>致谢</h3>
+<div class="section-intro">
+<ul style="margin: 0;">
+<li><strong>方法论上游:</strong>obra/superpowers(MIT)、Fission-AI/OpenSpec(MIT)、DietrichGebert/ponytail(MIT)、mattpocock/skills(grill-me)、mindfold-ai/Trellis(AGPL,仅摘录)</li>
+<li><strong>同行实践:</strong>公司内部 superspecflow 等多套 AI 编码方法论实践,提供了对照和参考</li>
+<li><strong>跨工具规格:</strong>agentskills.io/specification</li>
+</ul>
+</div>
+
+<h3>展望:下一步可能的方向</h3>
+<ul>
+<li><strong>补一个"标准/约束层"包</strong>——跨项目通用的工程约束(代码生成前必读文件、禁 dry-run、commit/分支规范),和 superspecflow 的重型流程互补。</li>
+<li><strong>通用 code-review 包</strong>——目前审查视角只有 ponytail 的"精简",可补安全/性能/正确性多视角。</li>
+<li><strong>Hook 机械拦截指导</strong>——把"软约束"和"硬约束"分层,真正需要 100% 强制的场景教项目怎么落地到 hook/CI。</li>
+</ul>
+
+<div class="foot">
+<p>— 分享结束 · 提问环节 —</p>
+<p style="font-size: 13px;">vibe-coding: <code>http://git.sinosafe.com.cn/marketing_customer_service/vibe-coding.git</code>　|　nacos2-mcp: <code>http://git.sinosafe.com.cn/marketing_customer_service/mcp.git</code></p>
+</div>
+
+</div>
+
+<script>
+// ========== 导航高亮 ==========
+const navLinks = document.querySelectorAll('.nav a');
+const sections = document.querySelectorAll('h2[id], div#cover');
+function updateNav() {
+  let cur = '';
+  const scrollY = window.scrollY;
+  sections.forEach(s => {
+    if (s.offsetTop - 120 <= scrollY) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+  });
+}
+window.addEventListener('scroll', updateNav);
+
+// ========== /vibe demo 模拟器 ==========
+const STAGES = ['stage-0','stage-1','stage-2','stage-3'];
+function showStage(n) {
+  STAGES.forEach((id, i) => {
+    document.getElementById(id).style.display = (i === n) ? 'block' : 'none';
+  });
+  const ind = document.getElementById('step-indicator');
+  const labels = ['准备', '第 1 步:选大类', '第 2 步:选具体包', '完成:已转交'];
+  ind.textContent = labels[n];
+  ind.classList.toggle('active', n >= 1);
+}
+
+function startDemo() { showStage(1); }
+
+const PACKS = {
+  A: {
+    prompt: 'A 类(动手前·澄清与计划)里有两个包,选哪个?',
+    subs: [
+      { letter:'1', name:'superpowers', desc:'方法论全流程 —— 推荐:多人协作 / 中大型项目', detail:'动手前澄清→拆计划→TDD→系统化调试→完成前验证,一开就锁全流程' },
+      { letter:'2', name:'grill-me', desc:'单点深度盘问 —— 推荐:计划"差不多对了"但有没拍板的决策', detail:'把计划当决策树逐枝走完,一次问一个,直到共识' }
+    ]
+  },
+  B: { direct:'openspec', reason:'需求要跨会话/团队共识/涉及 Lina 框架' },
+  C: { direct:'ponytail', reason:'嫌 AI 写太啰嗦/过度设计' },
+  D: { direct:'Trellis', reason:'多 agent 协作/需要跨会话记忆' }
+};
+
+function pickCategory(cat, el) {
+  document.querySelectorAll('.demo-card').forEach(c => c.classList.remove('selected'));
+  if (el) el.classList.add('selected');
+  document.getElementById('cat-chosen').textContent = cat;
+
+  const data = PACKS[cat];
+  if (data.direct) {
+    // B/C/D 直接转交
+    document.getElementById('final-pack').textContent = data.direct;
+    document.getElementById('handoff-box').innerHTML = handoffHtml(data.direct, data.reason);
+    showStage(3);
+  } else {
+    // A 展开二选一
+    document.getElementById('stage2-prompt').innerHTML = data.prompt + ' <span class="demo-step active" style="margin-left:6px;">第 2 步</span>';
+    const sub = document.getElementById('sub-cards');
+    sub.innerHTML = '<div class="demo-cards">' + data.subs.map(s => `
+      <div class="demo-card" onclick="pickPack('${s.name}', '${s.desc.replace(/'/g,"\\'")}', '${s.detail.replace(/'/g,"\\'")}', this)">
+        <div class="dc-head"><span class="dc-letter">${s.letter}</span>(${s.name})</div>
+        <div class="dc-desc">${s.desc}</div>
+        <div class="dc-packs">${s.detail}</div>
+      </div>`).join('') + '</div>';
+    showStage(2);
+  }
+}
+
+function pickPack(name, desc, detail, el) {
+  document.querySelectorAll('.demo-card').forEach(c => c.classList.remove('selected'));
+  if (el) el.classList.add('selected');
+  document.getElementById('final-pack').textContent = name;
+  document.getElementById('handoff-box').innerHTML = handoffHtml(name, desc);
+  showStage(3);
+}
+
+function handoffHtml(pack, reason) {
+  return `
+    <div class="h-label">📡 带上下文转交给 ${pack}</div>
+    <div class="h-row"><strong>用户要什么:</strong>[刚才输入的需求,一句话复述]</div>
+    <div class="h-row"><strong>为什么选这个包:</strong>${reason}</div>
+    <div class="h-row"><strong>已知约束:</strong>[代码里读到的相关文件/配置]</div>
+    <div class="h-row" style="margin-top:8px;color:#27c93f;">→ ${pack} 接管,vibe gateway 退场(不写码、不澄清、不计划)</div>
+  `;
+}
+
+function resetDemo() { showStage(0); }
+
+// 初始
+showStage(0);
+</script>
+
+</body>
+</html>

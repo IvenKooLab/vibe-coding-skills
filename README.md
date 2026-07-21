@@ -14,7 +14,7 @@
 - **英文 `SKILL.md`**——AI 加载正文(英文比中文省约 30% token),给 agent 看。
 - 跨工具字节同构:同一份 `SKILL.md` 复制到 `.claude/skills/` 与 `.qoder/skills/` 即两处生效。
 
-编写规范见 [`superpowers/docs/skill编写规范.md`](superpowers/docs/skill编写规范.md)。
+编写规范见 [`docs/skill编写规范.md`](docs/skill编写规范.md)。
 
 ---
 
@@ -59,7 +59,7 @@
 - `grill-me` 与 `superpowers` 的 `brainstorming` 都做需求澄清:`grill-me` 更偏**单点深度盘问**(把一个计划问透),`brainstorming` 更偏**完整工作流开场**。可单独用,也可叠加。
 - `ponytail` 是「写码时」的纪律,与任何方法论层都正交,叠加即生效。
 - `Trellis` 适合**需要跨会话记忆 / 多 agent 协作 / 团队共享 spec** 的中大型项目;轻量单人项目用前三者即可。
-- `openspec` 与 `Trellis` 同属工程框架域但分工:`openspec` 管需求**契约**(proposal→archive 的 delta),`Trellis` 管**持久化 + 编排**(spec/task/memory + 多 agent)。重项目可叠加;**轻量项目可不引入 OpenSpec**,只用方法论层(红线见 `superpowers/docs/skill编写规范.md` §8)。
+- `openspec` 与 `Trellis` 同属工程框架域但分工:`openspec` 管需求**契约**(proposal→archive 的 delta),`Trellis` 管**持久化 + 编排**(spec/task/memory + 多 agent)。重项目可叠加;**轻量项目可不引入 OpenSpec**,只用方法论层(红线见 `docs/skill编写规范.md` §8)。
 
 ---
 
@@ -70,7 +70,7 @@
 ├─ README.md                       # 本文件(合集索引)
 ├─ .gitignore
 ├─ vibe/                           # 总入口(gateway,弹菜单选包转交)
-├─ superpowers/                     # 方法论层(单 skill 含 5 纪律 + 开关 + 安装脚本)
+├─ superpowers/                     # 方法论层(单 skill 含 5 纪律)
 ├─ grill-me/                       # 需求拷问(1 skill)
 ├─ ponytail/                       # 精简纪律(1 核心 + 5 命令 skills)
 ├─ Trellis/                        # 工程框架精华(核心工作流 skills)
