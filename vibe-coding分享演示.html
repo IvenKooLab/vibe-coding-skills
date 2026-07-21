@@ -174,31 +174,31 @@ code { background: #f0f4fa; padding: 1px 6px; border-radius: 3px; font-family: C
 <!-- ============ 0. 封面 ============ -->
 <div id="cover">
 <div class="cover">
-  <h1>vibe-coding · AI 编码方法论合集</h1>
-  <div class="sub">把业界优秀的方法论,蒸馏成一套可移植的六包 + 两个日常实践</div>
+  <h1>vibe-coding · 完整的 AI 编码方法论体系</h1>
+  <div class="sub">从规格契约到精简纪律,覆盖轻到重全场景 · 两个日常实践</div>
   <div class="sub">营销与客服开发室 · AI 编程分享 · 2026-07</div>
-  <div class="hook">💡 一套<strong>可移植、跨工具通吃</strong>的 AI 编码方法论合集——六个包各管一段,<code>/vibe</code> 做总入口</div>
+  <div class="hook">💡 内含 <strong>OpenSpec 规格契约 + Superpowers 方法论 + Trellis 工程框架</strong> 三大重型底座,叠加 grill-me / ponytail / vibe 入口,重项目走完整规格流程,轻项目随取随用</div>
   <div class="git">git: http://git.sinosafe.com.cn/marketing_customer_service/vibe-coding.git</div>
 </div>
 
 <div class="section-intro">
 <strong>这次分享分三块:</strong>
 <ul style="margin: 8px 0 0;">
-<li><span class="tag tag-blue">方法论</span>vibe-coding 六包——和 superspecflow 是<strong>两种风格</strong>,不是替代关系</li>
-<li><span class="tag tag-green">日常实践</span>nacos2-mcp(让 AI 读配置)+ Obsidian Templater(笔记提效)——自己造的轮子和用的小工具</li>
+<li><span class="tag tag-blue">方法论体系</span>vibe-coding 六包——含规格契约 + 工程框架<strong>重型底座</strong>,在公司验证过的路上做产品化</li>
+<li><span class="tag tag-green">日常实践</span>nacos2-mcp(让 AI 读配置)+ Obsidian Templater(笔记提效)——工程落地与提效工具</li>
 <li><span class="tag tag-orange">互动</span>现场 demo <code>/vibe</code> 两段式菜单</li>
 </ul>
 </div>
 </div>
 
-<!-- ============ 1. 回顾 superspecflow ============ -->
-<h2 id="review">一、背景:superspecflow 与 vibe-coding 是两种风格</h2>
+<!-- ============ 1. 背景:站在公司验证过的路上 ============ -->
+<h2 id="review">一、背景:站在公司验证过的路上,做产品化</h2>
 
 <div class="section-intro">
-公司内部已经有多套 AI 编码方法论的实践。<strong>superspecflow</strong> 是其中一种:用 OpenSpec 做"项目的宪法",用 Superpowers 做"AI 的技能包",三阶段命令对应开发流程。vibe-coding 是另一种风格,放一起对照看,各有适用场景。
+公司内部已经有多套 AI 编码方法论的实践。其中 <strong>superspecflow</strong> 用 OpenSpec + Superpowers 验证了一条很扎实的路:<strong>规格契约驱动 + 标准化方法论</strong>。这条路是对的——本室的 vibe-coding <strong>在这条路上继续做产品化</strong>:把同样的 OpenSpec 规格契约、同样的 Superpowers 方法论,打包成可移植的标准包,并补全了精简纪律、需求盘问、工程框架、跨会话记忆等能力。
 </div>
 
-<h3>superspecflow 的核心结构</h3>
+<h3>superspecflow 验证的核心结构</h3>
 <table>
 <tr><th style="width:18%">组件</th><th style="width:32%">定位</th><th style="width:30%">产物</th><th style="width:20%">命令</th></tr>
 <tr><td><strong>OpenSpec</strong></td><td>项目的"宪法"——规格契约,所有需求/设计沉淀进仓库 spec</td><td>proposal / design / specs / tasks 四件套</td><td><code>/propose</code></td></tr>
@@ -206,52 +206,57 @@ code { background: #f0f4fa; padding: 1px 6px; border-radius: 3px; font-family: C
 <tr><td><strong>归档收尾</strong></td><td>交付前的质检——把变更回写进主规格</td><td>归档的 change + 更新后的 specs</td><td><code>/archive</code></td></tr>
 </table>
 
-<h3>两种风格,各有适用场景</h3>
-<p>听完他们的分享,我做 vibe-coding 时走了<strong>另一条路</strong>——不是替代,是另一种取舍。两者适合不同场景:</p>
+<h3>vibe-coding 做的产品化:在这条路上补什么</h3>
+<p>vibe-coding <strong>完全包含</strong> superspecflow 的核心能力(<code>openspec</code> 包 = 规格契约,<code>superpowers</code> 包 = 方法论纪律),并<strong>额外补了四个维度</strong>,让这套能力覆盖从"一个字段的改动"到"跨团队的契约变更"全场景:</p>
 
 <table>
-<tr><th style="width:20%">维度</th><th style="width:40%">superspecflow(理赔)</th><th style="width:40%">vibe-coding(本室)</th></tr>
-<tr><td><strong>定位</strong></td><td>重型、流程化、契约驱动</td><td>轻量、按需、可移植</td></tr>
-<tr><td><strong>适合项目</strong></td><td><span class="tag tag-blue">中大型</span>跨会话、多 agent、需要需求契约留痕</td><td><span class="tag tag-green">轻量/中</span>单人、多项目复用、跨工具混用</td></tr>
-<tr><td><strong>流程颗粒度</strong></td><td>三阶段全流程,每步暂停确认</td><td><code>/vibe</code> 按需路由,想用哪步用哪步</td></tr>
-<tr><td><strong>跨工具</strong></td><td>脚本适配器生成</td><td>字节同构(一份 SKILL.md 三处生效)</td></tr>
-<tr><td><strong>学习成本</strong></td><td>需理解 OpenSpec + Superpowers + 三命令</td><td>记一个 <code>/vibe</code> 就够</td></tr>
-<tr><td><strong>典型场景</strong></td><td>新需求走完整 <code>propose→apply→archive</code></td><td>改 bug → <code>/grill-me</code>;嫌啰嗦 → <code>/ponytail</code></td></tr>
+<tr><th style="width:22%">维度</th><th style="width:40%">superspecflow 已有</th><th style="width:38%">vibe-coding 补的</th></tr>
+<tr><td><strong>规格契约</strong></td><td>OpenSpec proposal/specs/design/tasks</td><td><code>openspec</code> 包,同源能力,跨工具字节同构</td></tr>
+<tr><td><strong>方法论纪律</strong></td><td>Superpowers 5 skill(brainstorming/TDD/...)</td><td><code>superpowers</code> 包,5 纪律合并为单文件</td></tr>
+<tr><td><strong>需求盘问</strong></td><td>—</td><td><code>grill-me</code>——动手前对计划做无情盘问,逐枝走完决策树</td></tr>
+<tr><td><strong>精简纪律</strong></td><td>—</td><td><code>ponytail</code>——能不写就不写,代码量均值 -54%</td></tr>
+<tr><td><strong>工程框架</strong></td><td>—</td><td><code>Trellis</code>——spec/task/memory 持久化 + 多 agent 协作</td></tr>
+<tr><td><strong>统一入口</strong></td><td>三个独立命令</td><td><code>vibe</code>——<code>/vibe</code> 弹菜单按需路由,记一个命令就够</td></tr>
 </table>
 
 <div class="quote">
-<strong>一句话:</strong>superspecflow 像正规军重装师(流程严谨、契约留痕),vibe-coding 像特种兵小队(轻便灵活、随取随用)。<strong>选哪种,看你的项目规模和协作方式。</strong>重型项目完全可以两者叠加——用 OpenSpec 定契约,用 vibe-coding 的轻量包做日常。
+<strong>一句话:</strong>vibe-coding 不是另起炉灶,是<strong>把公司验证过的路产品化</strong>——同样的规格契约 + 方法论纪律,加上需求盘问 / 精简纪律 / 工程框架 / 统一入口,形成一套可移植、跨工具通吃、从轻到重全覆盖的完整体系。<span class="hl">重项目走完整规格流程,轻项目随取随用,同一套体系。</span>
 </div>
 
 <!-- ============ 2. vibe-coding 六包 ============ -->
 <h2 id="sixpack">二、vibe-coding 的解法:六个包</h2>
 
 <div class="section-intro">
-vibe-coding 不是 superspecflow 的替代,是<strong>另一种风格</strong>——把业界优秀的方法论(skill)蒸馏成一套标准包,任何项目、任何工具(Claude Code / Qoder / Trae)装上即用。
+vibe-coding 是一套<strong>完整方法论体系</strong>——<span class="hl">底层含规格契约 + 工程框架(重型底座)</span>,向上叠加方法论纪律、需求盘问、精简纪律,顶部用 <code>vibe</code> 做统一入口。重型项目走完整规格流程,轻项目随取随用,同一套体系覆盖全场景。
 </div>
 
-<h3>分层架构(一图看懂)</h3>
+<h3>分层架构(三大重型底座置底,层层向上)</h3>
 <div class="arch">
 <div class="layer l-vibe">🚪 总入口层　vibe　　　　/vibe 弹菜单 → 选包 → 带上下文转交(自研路由器)</div>
 <div class="arrow">↓ 路由分发</div>
-<div class="layer l-pre">🎯 需求拷问层　grill-me　　动手前对计划做"无情盘问",一次问一个,直到共识</div>
-<div class="layer l-method">📘 方法论层　　superpowers　动手前澄清→拆计划→TDD→系统化调试→完成前验证(5 纪律合一)</div>
-<div class="layer l-disc">✂️ 精简纪律层　ponytail　　像最懒的资深开发:能不写就不写,能一行就一行</div>
-<div class="layer l-fw">🏗 工程框架层　Trellis　　　spec/task/memory 持久化 + 多 agent 协作</div>
-<div class="layer l-spec">📋 规格契约层　openspec　　需求/契约沉淀成仓库 spec(唯一可信基线)</div>
+<div class="layer l-pre">🎯 需求拷问层　grill-me　　动手前对计划做"无情盘问",一次问一个,直到共识(增量)</div>
+<div class="layer l-disc">✂️ 精简纪律层　ponytail　　能不写就不写,代码量 -54%(增量)</div>
+<div class="arrow">↓ 以下为三大重型底座(规格驱动核心)</div>
+<div class="layer l-spec">📋 <strong>【规格契约】</strong> openspec　　需求/契约沉淀成仓库 spec(唯一可信基线)· 同源于 OpenSpec</div>
+<div class="layer l-method">📘 <strong>【方法论纪律】</strong> superpowers　动手前澄清→拆计划→TDD→系统化调试→完成前验证 · 同源于 Superpowers</div>
+<div class="layer l-fw">🏗 <strong>【工程框架】</strong> Trellis　　spec/task/memory 持久化 + 多 agent 协作</div>
 <div class="arrow">↓ 调用 / 交叉引用</div>
 <div class="layer l-base">🏢 框架知识层(公司已有 lina-*):lina-redis · lina-rabbitmq · lina-mybatis · ...　openspec Part B 路由到这里</div>
 </div>
 
-<h3>六包一览(真实数据)</h3>
+<div class="quote">
+<strong>关键:</strong>规格契约(openspec)+ 方法论纪律(superpowers)这两层,正是公司 superspecflow 实践已经验证过的能力——vibe-coding 完整保留了它们,并打包成可移植标准包。<span class="hl">重型项目可叠加 OpenSpec 完整四件套流程(proposal→apply→archive),走的就是和理赔同源的规格驱动路线。</span>
+</div>
+
+<h3>六包一览(三大重型底座在前)</h3>
 <table>
 <tr><th style="width:13%">包</th><th style="width:14%">层</th><th style="width:43%">一句话</th><th style="width:18%">SKILL.md</th><th style="width:12%">来源</th></tr>
+<tr><td><code>openspec</code> <span class="tag tag-red">重型底座</span></td><td>规格契约层</td><td>需求/契约沉淀成仓库 spec(proposal/specs/design/tasks 四件套);涉及 Lina 时路由到 lina-*</td><td>1 个 / 155 行</td><td><span class="tag tag-blue">Fission-AI/MIT</span></td></tr>
+<tr><td><code>superpowers</code> <span class="tag tag-red">重型底座</span></td><td>方法论层</td><td>动手前澄清→拆计划→TDD→系统化调试→完成前验证(5 纪律)</td><td>1 个 / 315 行(5 纪律合一)</td><td><span class="tag tag-blue">obra/MIT</span></td></tr>
+<tr><td><code>Trellis</code> <span class="tag tag-red">重型底座</span></td><td>工程框架层</td><td>spec/task/memory 持久化进仓库 + 多 agent 协作</td><td>4 个 / 核心 62 行</td><td><span class="tag tag-orange">mindfold/AGPL</span></td></tr>
 <tr><td><code>vibe</code></td><td>总入口层</td><td>拿不准用哪个包时 <code>/vibe</code> 弹菜单,选一个,带上下文转交</td><td>1 个 / 99 行</td><td><span class="tag tag-gray">自研</span></td></tr>
-<tr><td><code>superpowers</code></td><td>方法论层</td><td>动手前澄清→拆计划→TDD→系统化调试→完成前验证</td><td>1 个 / 315 行(5 纪律合一)</td><td><span class="tag tag-blue">obra/MIT</span></td></tr>
 <tr><td><code>grill-me</code></td><td>需求拷问层</td><td>动手前对计划做"无情盘问",逐个走完决策树</td><td>1 个 / 61 行</td><td><span class="tag tag-blue">mattpocock</span></td></tr>
 <tr><td><code>ponytail</code></td><td>精简纪律层</td><td>像最懒的资深开发:能不写就不写,懒而不疏忽</td><td>6 个 / 核心 73 行</td><td><span class="tag tag-blue">DietrichGebert/MIT</span></td></tr>
-<tr><td><code>Trellis</code></td><td>工程框架层</td><td>spec/task/memory 持久化进仓库 + 多 agent 协作</td><td>4 个 / 核心 62 行</td><td><span class="tag tag-orange">mindfold/AGPL</span></td></tr>
-<tr><td><code>openspec</code></td><td>规格契约层</td><td>需求/契约沉淀成仓库 spec;涉及 Lina 时路由到 lina-*</td><td>1 个 / 155 行</td><td><span class="tag tag-blue">Fission-AI/MIT</span></td></tr>
 </table>
 
 <div class="stat-grid">
@@ -265,43 +270,43 @@ vibe-coding 不是 superspecflow 的替代,是<strong>另一种风格</strong>�
 <strong>关键设计:每个包都是"一包一 SKILL.md"</strong>——和 grill-me/openspec 同构。superpowers 原本是 1 开关 + 5 执行共 6 个文件,为了和其他兄弟对齐,<span class="hl">把 5 纪律合并进了 1 个单文件</span>(315 行,仍 &lt; 500 红线)。这样 <code>/vibe</code> 才能把"包"作为路由单位。
 </div>
 
-<!-- ============ 3. 设计取舍对比 ============ -->
-<h2 id="fix">三、设计取舍:两种风格背后的选择</h2>
+<!-- ============ 3. vibe-coding 的四个增量设计点 ============ -->
+<h2 id="fix">三、vibe-coding 的四个增量设计点</h2>
 
 <div class="section-intro">
-没有完美方案,只有<strong>不同取舍</strong>。这一节把两种风格在关键决策点的差异摆出来,方便大家对照自己的项目选。
+在规格契约 + 方法论纪律这个已验证的底座之上,vibe-coding 补了四个设计点,让这套能力<strong>覆盖从单字段改动到跨团队契约变更</strong>的全场景。每个点都对应一个真实痛点。
 </div>
 
-<h3>取舍 ①:流程颗粒度</h3>
+<h3>增量 ①:统一入口 —— /vibe 路由器</h3>
 <div class="fix">
-<div class="col pain-c"><h5>superspecflow 选了</h5>三阶段全流程,每步暂停确认。<strong>换来了</strong>:流程严谨、契约留痕、可追溯。</div>
-<div class="col design-c"><h5>vibe-coding 选了</h5><code>/vibe</code> 按需路由,想用哪步用哪步。<strong>换来了</strong>:轻量、快速、小改动成本低。</div>
-<div class="col effect-c"><h5>各自的代价</h5>前者对熟练开发者有摩擦;后者缺少强制的全流程兜底,靠开发者自觉。明文规则:轻量项目可只用方法论层,不引入 OpenSpec。</div>
+<div class="col pain-c"><h5>解决的痛点</h5>多包在手,记不住什么时候用哪个。新手面对 6 个包会迷茫。</div>
+<div class="col design-c"><h5>设计</h5><code>/vibe</code> 弹两段式菜单:先选 4 大类(动手前/规格契约/写码时/跨会话),再选具体包。</div>
+<div class="col effect-c"><h5>效果</h5>记一个 <code>/vibe</code> 就够;指名调用(<code>/openspec</code> 等)可跳过菜单。新手友好,老手直接。</div>
 </div>
 
-<h3>取舍 ②:跨工具适配方式</h3>
+<h3>增量 ②:需求盘问 —— grill-me</h3>
 <div class="fix">
-<div class="col pain-c"><h5>superspecflow 选了</h5>脚本"适配器"按工具生成不同格式。<strong>换来了</strong>:能针对每个工具做精细优化。</div>
-<div class="col design-c"><h5>vibe-coding 选了</h5><strong>字节同构</strong>:同一份 SKILL.md,Claude Code / Qoder / Trae 直接 cp 生效。<strong>换来了</strong>:维护一份源,零转换成本。</div>
-<div class="col effect-c"><h5>各自的代价</h5>前者维护脚本本身有成本;后者放弃了对单个工具的精细定制,换 IDE 不换 skill。</div>
+<div class="col pain-c"><h5>解决的痛点</h5>计划看起来"差不多对了",但藏着没拍板的决策,动手后才发现。</div>
+<div class="col design-c"><h5>设计</h5>对计划做无情盘问,一次问一个问题,带推荐答案,逐枝走完决策树。</div>
+<div class="col effect-c"><h5>效果</h5>动手前把软肋逼出来,避免返工。和 superpowers 的 brainstorming 互补——前者单点深挖,后者完整流程开场。</div>
 </div>
 
-<h3>取舍 ③:产出代码量</h3>
+<h3>增量 ③:精简纪律 —— ponytail</h3>
 <div class="fix">
-<div class="col pain-c"><h5>superspecflow 选了</h5>跑完整 brainstorming + writing-plans + TDD + code-review。<strong>换来了</strong>:质量把关环节多、覆盖全。</div>
-<div class="col design-c"><h5>vibe-coding 选了</h5>叠加 ponytail 的"梯子":YAGNI → 复用 → stdlib → 原生 → 一行 → 最小代码。<strong>换来了</strong>:代码量显著下降。</div>
-<div class="col effect-c"><h5>各自的代价</h5>前者 token 和时间成本高;后者精简可能漏掉一些"本该有"的环节(靠其他包补回)。<span class="hl">上游实测:ponytail 代码量均值 -54%</span>(成本 -20%、速度 -27%)。</div>
+<div class="col pain-c"><h5>解决的痛点</h5>AI 容易过度设计:引新依赖、写投机抽象、加包装组件。token 和维护成本高。</div>
+<div class="col design-c"><h5>设计</h5>"梯子":YAGNI → 复用 → stdlib → 原生 → 已装依赖 → 一行 → 最小代码。动手前从上往下找第一个成立的横档。</div>
+<div class="col effect-c"><h5>效果</h5><span class="hl">上游实测:代码量均值 -54%</span>(成本 -20%、速度 -27%),安全护栏 100% 保留。懒的是解法,绝不懒于读代码。</div>
 </div>
 
-<h3>取舍 ④:协议策略</h3>
+<h3>增量 ④:跨会话记忆 —— Trellis + 可移植打包</h3>
 <div class="fix">
-<div class="col pain-c"><h5>superspecflow 选了</h5>直接用上游完整 harness(npm install)。<strong>换来了</strong>:功能完整、自动化程度高。</div>
-<div class="col design-c"><h5>vibe-coding 选了</h5><strong>蒸馏而非搬运</strong>:只取方法论 + 中文说明,不搬源码。</div>
-<div class="col effect-c"><h5>各自的代价</h5>前者需遵守上游协议(如 AGPL 有传染性);后者协议干净(MIT 为主),但放弃了一些上游自动化能力。真正"硬"的约束都留给项目自己的 hook/CI。</div>
+<div class="col pain-c"><h5>解决的痛点</h5>AI 每个会话从零开始,不记得项目约定;方法论语料跨工具要维护多份。</div>
+<div class="col design-c"><h5>设计</h5>Trellis 把 spec/task/memory 持久化进仓库;全部六包<strong>字节同构</strong>,一份 SKILL.md 在 Claude Code / Qoder / Trae 三处直接 cp 生效。</div>
+<div class="col effect-c"><h5>效果</h5>跨会话有记忆 + 多 agent 协作;维护一份源分发到各工具,团队混用工具也统一。蒸馏不搬源码,License 干净(MIT 为主)。</div>
 </div>
 
 <div class="quote">
-<strong>一句话总结:</strong>两者是<strong>同一片光谱的两端</strong>——superspecflow 重型严谨,vibe-coding 轻量灵活。选哪种取决于项目规模和团队协作方式;中型以上项目完全可以两者叠加(用 OpenSpec 定契约 + 用 vibe-coding 的轻量包做日常)。
+<strong>一句话总结:</strong>规格契约 + 方法论纪律(已验证的底座)+ 统一入口 + 需求盘问 + 精简纪律 + 跨会话记忆 = <span class="hl">一套完整体系</span>。重项目叠加 OpenSpec 完整流程走规格驱动(同源于 superspecflow),轻项目用 grill-me+ponytail 做日常,各取所需。
 </div>
 
 <!-- ============ 4. demo ============ -->
@@ -459,16 +464,16 @@ vibe-coding 的安装<strong>刻意做得很轻</strong>——没有重型 insta
 
 <h3>三句话总结</h3>
 <ol>
-<li><strong>vibe-coding 是 superspecflow 的"另一种风格"</strong>——不是替代关系,是同一光谱的两端。重项目可以叠加(OpenSpec 定契约 + vibe-coding 做日常),轻项目单独用 vibe-coding 就够。</li>
-<li><strong>六个包各管一段,<code>/vibe</code> 做总入口。</strong>从"动手前"到"完成前验证"到"跨会话记忆",每段都有专人;记不住用哪个时,<code>/vibe</code> 弹菜单帮你选。</li>
-<li><strong>蒸馏不搬运,跨工具通吃。</strong>MIT 为主,一份 SKILL.md 三处生效,任何项目都能装。</li>
+<li><strong>vibe-coding 把公司验证过的规格驱动路线产品化了。</strong>含 OpenSpec 规格契约 + Superpowers 方法论纪律(同源于 superspecflow 验证的能力)+ Trellis 工程框架,打包成可移植标准包。重项目走完整规格流程,轻项目随取随用。</li>
+<li><strong>六大包各管一段,<code>/vibe</code> 做总入口。</strong>规格契约/方法论/工程框架是重型底座,叠加需求盘问(grill-me)、精简纪律(ponytail)、统一入口(vibe)三个增量,覆盖全场景。</li>
+<li><strong>蒸馏不搬运,跨工具通吃。</strong>MIT 为主,一份 SKILL.md 三处生效(Claude Code/Qoder/Trae),任何项目都能装。</li>
 </ol>
 
 <h3>致谢</h3>
 <div class="section-intro">
 <ul style="margin: 0;">
 <li><strong>方法论上游:</strong>obra/superpowers(MIT)、Fission-AI/OpenSpec(MIT)、DietrichGebert/ponytail(MIT)、mattpocock/skills(grill-me)、mindfold-ai/Trellis(AGPL,仅摘录)</li>
-<li><strong>同行实践:</strong>公司内部 superspecflow 等多套 AI 编码方法论实践,提供了对照和参考</li>
+<li><strong>验证过的路:</strong>公司内部 superspecflow 等实践验证了规格契约 + 方法论纪律的方向,vibe-coding 在此基础上做产品化与补全</li>
 <li><strong>跨工具规格:</strong>agentskills.io/specification</li>
 </ul>
 </div>
