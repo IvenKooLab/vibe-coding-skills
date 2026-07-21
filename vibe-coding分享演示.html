@@ -146,41 +146,34 @@ li { margin: 4px 0; }
 code { background: #f0f4fa; padding: 1px 6px; border-radius: 3px; font-family: Consolas, monospace; font-size: 14.5px; color: #c0392b; }
 .tip { font-size: 14px; color: #888; font-style: italic; margin-top: 6px; }
 
-/* Obsidian 模拟器 */
-.obs { background: #1e1e1e; border-radius: 8px; margin: 18px 0; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
-.obs-bar { background: #2a2a2a; padding: 8px 14px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #3a3a3a; }
-.obs-bar .dot { width: 11px; height: 11px; border-radius: 50%; }
-.obs-bar .name { color: #ccc; font-size: 13px; margin-left: 6px; font-family: Consolas, monospace; }
-.obs-bar .obs-step { margin-left: auto; }
-.obs-body { display: flex; min-height: 340px; }
-.obs-side { background: #252525; width: 170px; padding: 12px 10px; border-right: 1px solid #3a3a3a; font-size: 13px; color: #aaa; }
-.obs-side .vault { color: #999; font-size: 12px; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid #3a3a3a; }
-.obs-side .file { padding: 4px 6px; border-radius: 3px; cursor: pointer; }
-.obs-side .file:hover { background: #2d2d2d; color: #fff; }
-.obs-side .file.active { background: #1a4480; color: #fff; }
-.obs-main { flex: 1; padding: 16px 18px; color: #d4d4d4; font-size: 14px; line-height: 1.7; }
-.obs-empty { color: #777; text-align: center; padding-top: 80px; font-size: 14px; }
-.obs-empty .big { font-size: 40px; margin-bottom: 10px; }
-.tpl-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 14px 0; }
-.tpl-card { background: #2d2d30; border: 2px solid #3d3d40; border-radius: 6px; padding: 13px 15px; cursor: pointer; transition: all .2s; }
-.tpl-card:hover { border-color: #9c7c5e; background: #332d28; transform: translateY(-1px); }
-.tpl-card.selected { border-color: #b8860b; background: #3a2f1a; }
-.tpl-card .tc-icon { font-size: 22px; margin-bottom: 4px; }
-.tpl-card .tc-title { color: #fff; font-weight: 700; font-size: 15px; }
-.tpl-card .tc-desc { color: #aaa; font-size: 12.5px; margin-top: 3px; }
-.obs-note { color: #d4d4d4; font-size: 13.5px; }
-.obs-note h1 { color: #fff; font-size: 20px; margin: 0 0 4px; border: none; padding: 0; }
-.obs-note h2 { background: none; color: #d4a843; font-size: 15px; padding: 0; margin: 14px 0 5px; border: none; border-radius: 0; }
-.obs-note .meta { color: #888; font-size: 12px; margin-bottom: 12px; }
-.obs-note .var { color: #4ec9b0; background: #2a3a3a; padding: 1px 5px; border-radius: 2px; font-family: Consolas, monospace; font-size: 12.5px; }
-.obs-note .filled { color: #dcdcaa; }
-.obs-note .cursor-placeholder { display: inline-block; width: 7px; height: 15px; background: #dcdcaa; vertical-align: text-bottom; animation: blink 1s infinite; }
+/* AI 知识库对话模拟器 */
+.kb { background: #1e1e1e; border-radius: 8px; margin: 18px 0; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+.kb-bar { background: #2a2a2a; padding: 9px 14px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #3a3a3a; }
+.kb-bar .dot { width: 11px; height: 11px; border-radius: 50%; }
+.kb-bar .name { color: #ccc; font-size: 13px; margin-left: 6px; font-family: Consolas, monospace; }
+.kb-bar .kb-status { margin-left: auto; font-size: 12px; color: #4ec9b0; }
+.kb-body { padding: 16px 18px; min-height: 340px; font-size: 14px; line-height: 1.7; color: #d4d4d4; }
+.kb-empty { color: #888; text-align: center; padding-top: 70px; }
+.kb-empty .big { font-size: 38px; margin-bottom: 10px; }
+.kb-side-info { background: #252525; border: 1px solid #3a3a3a; border-radius: 5px; padding: 10px 14px; margin-bottom: 14px; font-size: 12.5px; color: #aaa; }
+.kb-side-info strong { color: #4ec9b0; }
+.kb-side-info .kb-file { color: #dcdcaa; font-family: Consolas, monospace; font-size: 12px; }
+.msg { margin: 11px 0; display: flex; gap: 10px; }
+.msg .avatar { width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 15px; }
+.msg.user .avatar { background: #1a4480; }
+.msg.ai .avatar { background: #2a5ca0; }
+.msg .bubble { background: #2a2a2a; padding: 10px 14px; border-radius: 8px; font-size: 13.5px; line-height: 1.65; max-width: 88%; }
+.msg.user .bubble { background: #1a3a6e; color: #e8e8e8; }
+.msg.ai .bubble { background: #2d2d30; }
+.msg.ai .bubble .typing { display: inline-block; width: 7px; height: 14px; background: #4ec9b0; vertical-align: text-bottom; animation: blink 1s infinite; }
+.cite { background: #2a3a2a; border-left: 3px solid #4ec9b0; padding: 8px 12px; margin: 8px 0; border-radius: 0 4px 4px 0; font-size: 12.5px; }
+.cite .cite-src { color: #4ec9b0; font-size: 11.5px; margin-bottom: 3px; }
+.cite .cite-file { color: #dcdcaa; font-family: Consolas, monospace; }
+.kb-questions { margin: 12px 0; }
+.kb-q { background: #2d2d30; border: 1px solid #3d3d40; border-radius: 5px; padding: 10px 13px; margin: 7px 0; cursor: pointer; transition: all .15s; font-size: 13.5px; color: #d4d4d4; }
+.kb-q:hover { border-color: #4ec9b0; background: #2a3a3a; transform: translateX(2px); }
+.kb-q .q-tag { color: #4ec9b0; font-size: 11.5px; margin-right: 6px; }
 @keyframes blink { 0%,50%{opacity:1} 51%,100%{opacity:0} }
-.obs-note ul { margin: 4px 0; padding-left: 22px; }
-.obs-note li { margin: 2px 0; }
-.obs-note code { background: #2a2a2a; color: #ce9178; }
-.obs-step { display: inline-block; padding: 3px 11px; background: #3d3d40; color: #aaa; border-radius: 10px; font-size: 12.5px; }
-.obs-step.active { background: #b8860b; color: #fff; }
 
 @media (max-width: 760px) {
   .pain-grid, .demo-cards, .stat-grid { grid-template-columns: 1fr; }
@@ -221,7 +214,7 @@ code { background: #f0f4fa; padding: 1px 6px; border-radius: 3px; font-family: C
 <strong>这次分享分三块:</strong>
 <ul style="margin: 8px 0 0;">
 <li><span class="tag tag-blue">方法论体系</span>vibe-coding 六包——含规格契约 + 工程框架<strong>重型底座</strong>,在公司验证过的路上做产品化</li>
-<li><span class="tag tag-green">日常实践</span>nacos2-mcp(让 AI 读配置)+ Obsidian Templater(笔记提效)——工程落地与提效工具</li>
+<li><span class="tag tag-green">日常实践</span>nacos2-mcp(让 AI 读配置)+ 知识库接入(让 AI 读本地笔记)——补齐 AI 的上下文</li>
 <li><span class="tag tag-orange">互动</span>现场 demo <code>/vibe</code> 两段式菜单</li>
 </ul>
 </div>
@@ -422,7 +415,7 @@ vibe-coding 是一套<strong>完整方法论体系</strong>——<span class="hl
 <h2 id="nacos">五、日常实践分享</h2>
 
 <div class="section-intro">
-方法论之外,再分享两个<strong>日常在用的实践</strong>——一个是我造的轮子(nacos2-mcp),一个是我在用的笔记工具(Obsidian 模板)。都是小东西,但切实解决了手头的问题。
+方法论之外,再分享两个<strong>日常在探索的实践</strong>——一个是我造的轮子(nacos2-mcp),一个是让 AI 读得到本地知识库。都是小东西,但都解决同一个核心问题:补齐 AI 读不到的上下文。
 </div>
 
 <h3>实践一:nacos2-mcp —— 让 AI 读得到配置</h3>
@@ -444,82 +437,59 @@ vibe-coding 是一套<strong>完整方法论体系</strong>——<span class="hl
 <strong>git 地址:</strong><code>http://git.sinosafe.com.cn/marketing_customer_service/mcp.git</code>(与 vibe-coding 同级,都是科室 AI 分享仓库)
 </div>
 
-<h3>实践二:Obsidian + Templater —— 笔记提效</h3>
+<h3>实践二:让 AI 读得到本地知识库</h3>
 
 <div class="section-intro">
-<strong>坦诚说明:</strong>这块我刚部署 Obsidian,还在起步阶段,没有成熟模板库可展示。分享的是<strong>思路和效果预演</strong>——Templater 这个方向我认为值得做,后面会沉淀一套自己的模板。
+日常沉淀的笔记、需求文档、踩坑录、技术调研,本来是<strong>死在本地</strong>的——AI 编码时读不到,你只能手动复制粘贴喂给它。<strong>让 AI 读得到本地知识库</strong>(任何本地文档/wiki/笔记都行),是比"AI 单独写代码"更值得做的方向:把已有的知识变成 AI 的上下文,AI 的输出质量会明显上一个台阶。
 </div>
 
-<p>核心提效点是 <strong>Templater 插件</strong>——预设好模板,新建笔记时一键套用,变量(日期、标题)自动填,不用每次从空白文档开始想格式。下面是效果模拟器,现场可点:</p>
+<p>下面是效果模拟器,展示 AI 读知识库后的对话场景(只演示理念,不涉及具体接入):</p>
 
-<div class="obs">
-<div class="obs-bar">
+<div class="kb">
+<div class="kb-bar">
 <span class="dot" style="background:#ff5f56"></span><span class="dot" style="background:#ffbd2e"></span><span class="dot" style="background:#27c93f"></span>
-<span class="name">Obsidian · 笔记仓库</span>
-<span class="obs-step active" id="obs-step-ind">第 1 步:新建笔记</span>
+<span class="name">AI 编程助手 · 已接入知识库</span>
+<span class="kb-status">🟢 已索引 24 篇笔记</span>
 </div>
-<div class="obs-body">
+<div class="kb-body" id="kb-body">
 
-<div class="obs-side">
-<div class="vault">📁 我的仓库</div>
-<div class="file">📄 2026-07-14 周会纪要</div>
-<div class="file">📄 导出功能-需求</div>
-<div class="file">📄 NPE-踩坑-0712</div>
-<div class="file active">➕ 新建笔记</div>
+<div class="kb-side-info">
+<strong>📚 已接入知识库:</strong> <span class="kb-file">~/notes/</span> 下 24 篇 · 含需求/踩坑/调研/周会纪要<br>
+<strong>AI 能力:</strong> 回答时自动检索相关笔记并引用来源
 </div>
 
-<div class="obs-main" id="obs-main">
-<div id="obs-stage-0">
-<div class="obs-empty">
-<div class="big">📝</div>
-点击"新建笔记",选一个模板试试
-<div style="margin-top: 16px;">
-<span class="demo-btn go" onclick="obsNewNote()">▶ 新建笔记</span>
+<div id="kb-stage-0">
+<div class="kb-empty">
+<div class="big">💬</div>
+AI 已就绪,选一个问题问它:
+<div class="kb-questions">
+<div class="kb-q" onclick="kbAsk('q1')"><span class="q-tag">Q1</span>上次导出功能定的验收标准是什么?</div>
+<div class="kb-q" onclick="kbAsk('q2')"><span class="q-tag">Q2</span>NPE 那个坑后来怎么解的?</div>
+<div class="kb-q" onclick="kbAsk('q3')"><span class="q-tag">Q3</span>Redis 分布式锁咱们怎么用的?</div>
 </div>
 </div>
 </div>
 
-<div id="obs-stage-1" style="display:none;">
-<div style="color:#dcdcaa;font-size:14px;margin-bottom:6px;">选择模板:</div>
-<div class="tpl-cards">
-<div class="tpl-card" onclick="obsPickTpl('meeting', this)">
-<div class="tc-icon">📋</div>
-<div class="tc-title">会话纪要</div>
-<div class="tc-desc">会开完,一键生成结构化纪要</div>
-</div>
-<div class="tpl-card" onclick="obsPickTpl('req', this)">
-<div class="tc-icon">📐</div>
-<div class="tc-title">需求笔记</div>
-<div class="tc-desc">接需求时按固定结构记录,喂 AI 也方便</div>
-</div>
-<div class="tpl-card" onclick="obsPickTpl('bug', this)">
-<div class="tc-icon">🐞</div>
-<div class="tc-title">踩坑记录</div>
-<div class="tc-desc">bug 改完顺手记一条,下次能翻出来</div>
-</div>
-<div class="tpl-card" onclick="obsPickTpl('research', this)">
-<div class="tc-icon">🔍</div>
-<div class="tc-title">技术调研</div>
-<div class="tc-desc">技术选型时固定 checklist,不漏维度</div>
-</div>
-</div>
-</div>
-
-<div id="obs-stage-2" style="display:none;">
-<div class="obs-note" id="obs-note-content"></div>
-<div style="margin-top: 14px;">
-<span class="demo-btn reset" onclick="obsReset()">↺ 重置(再演示一次)</span>
-</div>
-</div>
+<div id="kb-stage-1" style="display:none;"></div>
 
 </div>
 </div>
-</div>
 
-<div class="tip">💡 现场讲法:点"新建笔记" → 选"会话纪要" → 展示日期/标题自动填好、待办区光标就位(琥珀色闪烁)。强调:不用手敲日期、不用想格式,直接开始填内容。</div>
+<div class="tip">💡 现场讲法:点 Q1 → 展示 AI 先显示"检索中",再引用具体笔记文件给出答案,带来源标注。强调:没有这个能力时,你得手动翻笔记 + 复制粘贴;有了之后,AI 自己能查,等于给 AI 配了"项目记忆"。</div>
+
+<h3>这和 nacos2-mcp 是同一类思路</h3>
+<table>
+<tr><th style="width:22%">实践</th><th style="width:30%">补的是什么上下文</th><th style="width:48%">效果</th></tr>
+<tr><td><strong>nacos2-mcp</strong></td><td>配置中心(nacos)的内容</td><td>AI 读得到配置,不再凭空猜逻辑 → 重复写代码缓解</td></tr>
+<tr><td><strong>知识库接入</strong></td><td>本地笔记/文档/wiki(需求、踩坑、调研)</td><td>AI 读得到团队沉淀 → 输出贴合项目实际,而非通用答案</td></tr>
+</table>
 
 <div class="quote">
-<strong>为什么分享这个:</strong>笔记工具大家都在用,但很多人是"建个空文档就开始写"。Templater 的价值是<strong>把重复的结构劳动固化下来</strong>——和 vibe-coding 蒸馏方法论是同一个思路:把好的东西沉淀成可复用的模板,下次直接套。这套思路跑通后,会沉淀出我自己的模板库,后续可以再分享。
+<strong>核心理念:</strong>AI 编码的瓶颈<strong>不在模型能力,在上下文</strong>。模型已经够强,缺的是"它不知道你项目里发生过什么"。把配置、笔记、文档、踩坑录这些本地知识接进来,AI 就从"通用助手"变成"懂你项目的助手"。这也是我把 nacos2-mcp 和知识库接入都放进这次分享的原因——它们解决的是同一类问题。
+</div>
+
+<div class="section-intro">
+<strong>说明:</strong>这里只演示理念和效果。具体接入方式(哪种工具配什么 MCP/插件)受公司环境和工具支持情况影响,大家按自己用的工具探索——<strong>思路是普适的:把本地知识变成 AI 的上下文</strong>。
 </div>
 
 <!-- ============ 6. 安装 ============ -->
@@ -674,104 +644,64 @@ function handoffHtml(pack, reason) {
 
 function resetDemo() { showStage(0); }
 
-// ========== Obsidian + Templater 模拟器 ==========
-const OBS_STAGES = ['obs-stage-0','obs-stage-1','obs-stage-2'];
-function obsShow(n) {
-  OBS_STAGES.forEach((id, i) => {
-    document.getElementById(id).style.display = (i === n) ? 'block' : 'none';
-  });
-  const ind = document.getElementById('obs-step-ind');
-  const labels = ['第 1 步:新建笔记', '第 2 步:选模板', '第 3 步:已生成'];
-  ind.textContent = labels[n];
-  ind.classList.toggle('active', n >= 1);
-}
-function obsNewNote() { obsShow(1); }
-
-// 模板定义:每个模板返回渲染好的 HTML(变量已"填充",光标位用闪烁占位)
-const CURSOR = '<span class="cursor-placeholder"></span>';
-function today() {
-  const d = new Date();
-  const p = n => String(n).padStart(2,'0');
-  return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`;
-}
-function nowHM() {
-  const d = new Date();
-  const p = n => String(n).padStart(2,'0');
-  return `${p(d.getHours())}:${p(d.getMinutes())}`;
-}
-
-const TPL = {
-  meeting: () => `
-    <h1>会话纪要 · ${today()}</h1>
-    <div class="meta">📅 <span class="filled">${today()} ${nowHM()}</span> · 🏷️ #会议 · 📁 日程</div>
-    <h2>📍 基本信息</h2>
-    <ul>
-      <li><strong>参会:</strong>${CURSOR}</li>
-      <li><strong>议题:</strong></li>
-    </ul>
-    <h2>💬 讨论要点</h2>
-    <ul><li>${CURSOR}</li></ul>
-    <h2>✅ 决议</h2>
-    <ul><li> </li></ul>
-    <h2>📋 待办</h2>
-    <ul>
-      <li>[ ] ${CURSOR} <em style="color:#888">— 负责人 / 截止</em></li>
-    </ul>
-  `,
-  req: () => `
-    <h1>需求笔记</h1>
-    <div class="meta">📅 <span class="filled">${today()}</span> · 🏷️ #需求 · 📁 需求池</div>
-    <h2>背景</h2>
-    <p>${CURSOR}</p>
-    <h2>验收标准</h2>
-    <ul><li> </li></ul>
-    <h2>影响范围</h2>
-    <ul>
-      <li><strong>模块:</strong></li>
-      <li><strong>关联系统:</strong></li>
-    </ul>
-    <h2>关联</h2>
-    <p>需求单号:${CURSOR} ｜ 相关链接:</p>
-  `,
-  bug: () => `
-    <h1>踩坑 · ${today()}</h1>
-    <div class="meta">📅 <span class="filled">${today()}</span> · 🏷️ #踩坑 · 📁 踩坑录</div>
-    <h2>🐞 问题</h2>
-    <p>${CURSOR}</p>
-    <h2>🔍 根因</h2>
-    <p> </p>
-    <h2>🛠 解决</h2>
-    <p> </p>
-    <h2>🛡 预防 / 复现步骤</h2>
-    <ul><li>${CURSOR}</li></ul>
-  `,
-  research: () => `
-    <h1>技术调研</h1>
-    <div class="meta">📅 <span class="filled">${today()}</span> · 🏷️ #调研 · 📁 技术选型</div>
-    <h2>问题</h2>
-    <p>${CURSOR}</p>
-    <h2>候选方案</h2>
-    <ul><li>方案 A:</li><li>方案 B:</li></ul>
-    <h2>对比维度</h2>
-    <ul>
-      <li>性能 / 成本 / 维护性 / 生态 / 风险</li>
-    </ul>
-    <h2>结论 / 参考</h2>
-    <p>${CURSOR}</p>
-  `
+// ========== AI 知识库对话模拟器 ==========
+const KB_ANSWERS = {
+  q1: {
+    q: '上次导出功能定的验收标准是什么?',
+    src: '需求笔记/导出功能-需求.md',
+    cite: '【验收标准】① 支持 Excel/CSV 两种格式;② 单次导出 ≤ 10 万行,>10 万走异步任务;③ 敏感字段(身份证/手机号)脱敏;④ 导出失败需邮件通知发起人。',
+    answer: '根据你 2026-07-08 的需求笔记,导出功能的验收标准有 4 条:支持 Excel/CSV、≤10 万行同步/>10 万异步、敏感字段脱敏、失败邮件通知。其中"敏感字段脱敏"是后来加的(7-10 补的决策)。'
+  },
+  q2: {
+    q: 'NPE 那个坑后来怎么解的?',
+    src: '踩坑录/NPE-0712.md',
+    cite: '【根因】订单查询接口返回的 User 对象在某些历史数据下为 null(老数据 user_id 指向已删除用户)。【解决】在 OrderService.getUserById 处加 null 判断,返回占位用户而非抛 NPE。【预防】对所有跨表关联查询加 Optional 包装。',
+    answer: '那个 NPE 根因是历史脏数据:user_id 指向已删除用户,导致 getUserById 返回 null 后直接解引用。解决是在 OrderService 加 null 判断,返回占位用户;预防是对所有跨表关联查询用 Optional 包装。详细复现步骤在踩坑录里。'
+  },
+  q3: {
+    q: 'Redis 分布式锁咱们怎么用的?',
+    src: '技术调研/分布式锁选型.md',
+    cite: '【结论】用 lina-redis-starter 的 RedisService.tryLock,key 格式 {业务域}:{功能}:{标识},TTL 默认 30s,必须带 finally 释放。禁止用 SETNX(无超时风险)。',
+    answer: '咱们用 lina-redis-starter 的 RedisService.tryLock。key 命名 {业务域}:{功能}:{标识},TTL 默认 30s,必须在 finally 里释放。调研笔记里明确禁用了 SETNX(无超时会死锁)。这部分代码规范可以参考 lina-redis skill。'
+  }
 };
 
-function obsPickTpl(key, el) {
-  document.querySelectorAll('.tpl-card').forEach(c => c.classList.remove('selected'));
-  if (el) el.classList.add('selected');
-  document.getElementById('obs-note-content').innerHTML = TPL[key]();
-  obsShow(2);
+function kbAsk(key) {
+  const data = KB_ANSWERS[key];
+  const stage1 = document.getElementById('kb-stage-1');
+  document.getElementById('kb-stage-0').style.display = 'none';
+
+  // 先渲染用户问题 + "检索中"占位
+  stage1.style.display = 'block';
+  stage1.innerHTML = `
+    <div class="msg user"><div class="avatar">🧑</div><div class="bubble">${data.q}</div></div>
+    <div class="msg ai" id="kb-ai-msg"><div class="avatar">🤖</div><div class="bubble"><span class="typing"></span> <span style="color:#888;font-size:12.5px;">检索知识库中…</span></div></div>
+    <div style="margin-top: 14px;">
+      <span class="demo-btn reset" onclick="kbReset()">↺ 再问一个</span>
+    </div>
+  `;
+
+  // 800ms 后显示带引用的答案
+  setTimeout(() => {
+    const aiMsg = document.getElementById('kb-ai-msg');
+    aiMsg.querySelector('.bubble').innerHTML = `
+      ${data.answer}
+      <div class="cite">
+        <div class="cite-src">📚 引用自知识库 · <span class="cite-file">${data.src}</span></div>
+        ${data.cite}
+      </div>
+    `;
+  }, 850);
 }
 
-function obsReset() { obsShow(0); }
+function kbReset() {
+  document.getElementById('kb-stage-0').style.display = 'block';
+  document.getElementById('kb-stage-1').style.display = 'none';
+  document.getElementById('kb-stage-1').innerHTML = '';
+}
 
 // 初始
-obsShow(0);
+kbReset();
 
 // 初始
 showStage(0);
