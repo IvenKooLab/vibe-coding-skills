@@ -1,6 +1,20 @@
 # vibe-coding · AI 编码技能合集
 
-> 把业界优秀的「AI 怎么干活」技能,蒸馏成一套**同时适用于 Claude Code 与 Qoder**的标准 skill 包,补齐公司 skill 库的方法论 / 纪律 / 工程框架层。
+[![License](https://img.shields.io/badge/license-MIT%20%2B%20upstream-blue.svg)](#license)
+[![Skills](https://img.shields.io/badge/skill%20packs-6-green.svg)](#六大-skill-包)
+[![Format](https://img.shields.io/badge/format-SKILL.md%20spec-FF6F00.svg)](https://agentskills.io/specification)
+
+## Why 中文蒸馏版
+
+每个包 = 上游项目的**核心工作流精华**(中文说明 + 英文 `SKILL.md`),不是翻译全文:
+
+- **体例统一**:六个包一个骨架(何时用 / 怎么用 / 协作),上游文档各自为战
+- **交叉引用打通**:`/vibe` 总入口 + 包间 `[[skill-name]]` 互链,上游之间没有这层
+- **即装即用**:单包可独立安装,不绑定任何 CLI / hooks / 目录约定
+- 适合:中文团队的 AI 编程纪律起步包;想看上游全貌的,每个 README 底部都有原仓库链接
+
+
+> 把业界优秀的「AI 怎么干活」技能,蒸馏成一套**同时适用于 Claude Code 与 Qoder**的标准 skill 包,把业界优秀的 AI 工程纪律,蒸馏成即装即用的 skill 包。
 
 > 🚪 **总入口**:装好后,拿不准用哪个包时,对 agent 说一句 **`/vibe`**——它弹出 5 个兄弟包的菜单,你选一个,它带上下文转交。详见 [`vibe/`](vibe/)。
 
@@ -25,11 +39,11 @@
 | 包 | 层 | 一句话 | 来源 |
 |---|---|---|---|
 | [`vibe`](vibe/) | 总入口层 | 拿不准用哪个包时 `/vibe` 弹菜单,选一个,带上下文转交 | 自研(路由器) |
-| [`superpowers`](superpowers/) | 方法论层 | 动手前先澄清需求→拆计划→TDD→系统化调试→完成前验证 | obra/superpowers + 公司 lina-* |
+| [`superpowers`](superpowers/) | 方法论层 | 动手前先澄清需求→拆计划→TDD→系统化调试→完成前验证 | obra/superpowers |
 | [`grill-me`](grill-me/) | 需求拷问层 | 动手前对计划做「无情盘问」,逐个走完决策树,直到达成共识 | mattpocock/skills · grill-me |
 | [`ponytail`](ponytail/) | 精简纪律层 | 像最懒的资深开发:能不写就不写,能一行就一行,**懒而不疏忽** | DietrichGebert/ponytail |
 | [`Trellis`](Trellis/) | 工程框架层 | 把 spec / task / memory 持久化进仓库,让 AI 跨会话有记忆 + 多 agent 协作 | mindfold-ai/Trellis |
-| [`openspec`](openspec/) | 规格契约层 | 把需求/契约沉淀成仓库 spec(唯一可信基线);涉及 Lina 框架时路由到对应 `lina-*` | Fission-AI/OpenSpec + 公司 lina-* |
+| [`openspec`](openspec/) | 规格契约层 | 把需求/契约沉淀成仓库 spec(唯一可信基线);涉及内部框架时路由到对应框架 skill | Fission-AI/OpenSpec |
 
 ### 它们怎么串起来
 
@@ -49,13 +63,13 @@
 └──────────────────────────────────────────────────────────────┘
                        ↓ 调用 / 交叉引用
 ┌──────────────────────────────────────────────────────────────┐
-│  框架知识层(公司已有 lina-*):「用什么」                       │
-│  lina-redis · lina-rabbitmq · lina-mybatis · ...              │
+│  框架知识层(你自己的内部 skill):「用什么」                     │
+│  your-framework-redis · your-framework-mq · ... (示例)        │
 │  openspec Part B 是去那里的路由器(一带多)                    │
 └──────────────────────────────────────────────────────────────┘
 ```
 
-- **方法论层**管「怎么干」,`lina-*` 管「用什么」,二者互补不互斥。
+- **方法论层**管「怎么干」,你的框架 skill 管「用什么」,二者互补不互斥。
 - `grill-me` 与 `superpowers` 的 `brainstorming` 都做需求澄清:`grill-me` 更偏**单点深度盘问**(把一个计划问透),`brainstorming` 更偏**完整工作流开场**。可单独用,也可叠加。
 - `ponytail` 是「写码时」的纪律,与任何方法论层都正交,叠加即生效。
 - `Trellis` 适合**需要跨会话记忆 / 多 agent 协作 / 团队共享 spec** 的中大型项目;轻量单人项目用前三者即可。
@@ -74,7 +88,7 @@
 ├─ grill-me/                       # 需求拷问(1 skill)
 ├─ ponytail/                       # 精简纪律(1 核心 + 5 命令 skills)
 ├─ Trellis/                        # 工程框架精华(核心工作流 skills)
-└─ openspec/                       # 规格契约层 + Lina 框架中转(1 skill)
+└─ openspec/                       # 规格契约层 + 内部框架中转(1 skill)
 ```
 
 各包的安装 / 使用 / 卸载,见对应目录下的 `README.md`。
@@ -87,7 +101,7 @@
 - [mattpocock/skills](https://github.com/mattpocock/skills) · `grill-me` → 需求拷问
 - [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail)(MIT)→ 精简纪律
 - [mindfold-ai/Trellis](https://github.com/mindfold-ai/Trellis)(AGPL-3.0)→ 工程框架
-- [Fission-AI/OpenSpec](https://github.com/Fission-AI/OpenSpec)(MIT)→ 规格契约层;`openspec` Part B 的 `lina-*` 随公司 skill 库
+- [Fission-AI/OpenSpec](https://github.com/Fission-AI/OpenSpec)(MIT)→ 规格契约层;`openspec` Part B 的框架知识层由你自己的内部 skill 组成
 - 跨工具格式规格:[agentskills.io/specification](https://agentskills.io/specification)
 
 > 各包 License 随上游:superpowers / ponytail / openspec 为 MIT;grill-me 随 mattpocock/skills;Trellis 上游为 AGPL-3.0,本仓库仅做方法论的**蒸馏摘录与中文说明**,未整体搬运其源码,使用时请遵守上游协议。

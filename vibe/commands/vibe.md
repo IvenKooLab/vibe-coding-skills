@@ -14,7 +14,7 @@ The 5 packs are grouped into 4 categories (so they fit the 4-option picker card)
 A. 动手前 · 澄清与计划 —— 需求还没想清楚 / 计划有隐患
    含:superpowers(brainstorming+writing-plans)、grill-me
 
-B. 规格与契约 —— 需求要跨会话 / 团队共识 / 涉及 Lina 框架
+B. 规格与契约 —— 需求要跨会话 / 团队共识 / 涉及内部框架
    含:openspec
 
 C. 写码时 · 纪律与质量 —— 嫌 AI 写太啰嗦 / 过度设计

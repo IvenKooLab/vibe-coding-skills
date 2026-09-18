@@ -1,5 +1,7 @@
 # Trellis · 把 spec / task / memory 持久化进仓库的工程框架
 
+> 本目录衍生自 [mindfold-ai/Trellis](https://github.com/mindfold-ai/Trellis)(**AGPL-3.0**),同样以 AGPL-3.0 提供。
+
 > AI 写码很快,但**每个会话都从零开始**——不记得你的项目、你的约定、你团队的需求。Trellis 把**规格(spec)、任务(task)、记忆(memory)持久化进仓库**,让任何编码 agent 都按你的工程标准干活,新会话能接上上一会的进度。
 
 本包是 [mindfold-ai/Trellis](https://github.com/mindfold-ai/Trellis) 的**核心工作流精华蒸馏版**(中文说明 + 英文 `SKILL.md`),只取「meta 总览 + 开发循环 + 关键概念」;完整 CLI / hooks / `.trellis/` 脚本自动化需装上游。
@@ -93,7 +95,7 @@ Qoder 同理复制到 `<项目>/.qoder/skills/`,字节同构。
 
 - Plan 阶段 = [[trellis-brainstorm]](与 [[grill-me]] 同源)。Verify 阶段 = [[trellis-check]]。多 agent = [[trellis-channel]]。
 - Trellis 在方法论层之上,是**持久化 + 编排**框架,让那些 skill 跑在里头。
-- spec 层正好可以锚定公司框架知识(`lina-*`):把相关 `lina-*` 约定写进 `.trellis/spec/` 一次,每个会话自动继承。
+- spec 层正好可以锚定框架知识(`your-framework-*`):把相关约定写进 `.trellis/spec/` 一次,每个会话自动继承。
 
 ---
 

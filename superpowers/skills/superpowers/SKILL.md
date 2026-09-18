@@ -303,12 +303,12 @@ Core belief: **a verification you didn't run is a verification you didn't do.** 
 
 - **Check proactively**: before each step, look for a matching discipline and follow its process.
 - **User instruction wins**: explicit user instructions have the highest priority; say "disable superpowers" / "停用 superpowers" to exit.
-- **Work with the framework**: when company frameworks (Lina etc.) are involved, use the matching `lina-*` skill.
+- **Work with the framework**: when internal frameworks are involved, use the matching framework skill.
 - **Interruptible**: the user can stop any step or the whole mode at any time.
 
 ## Collaborates with
 
-- **Framework knowledge layer** (`lina-*`): `lina-*` = what to use; this skill = how to work. Orthogonal, complementary. Touches Lina structure/starter choice → [[lina-framework-base]]; involves Redis/MQ/multi-datasource → the relevant `lina-*` skill. Java conventions → Alibaba Java Development Manual.
+- **Framework knowledge layer** (`your-framework-*`): framework skills = what to use; this skill = how to work. Orthogonal, complementary. Touches framework structure/starter choice → [[your-framework-base]]; involves Redis/MQ/multi-datasource → the relevant framework skill. Java conventions → Alibaba Java Development Manual.
 - **[[grill-me]]**: a deeper, single-point plan interrogation — use it when a plan feels "roughly right" but hides decisions.
 - **[[ponytail]]**: orthogonal discipline for *what the code looks like* (minimal, lazy-but-not-negligent). Stack with any discipline.
 - **[[openspec]]**: the contract layer. Complex projects: requirements/design contracts go into OpenSpec's proposal/spec/design/tasks; this skill only executes and **does not** define the requirement baseline.

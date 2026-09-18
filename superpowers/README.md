@@ -1,8 +1,8 @@
 # Superpowers · 方法论层(5 纪律)
 
-> 把 superpowers 的"AI 怎么干活"工作方法论,沉淀为一个**同时适用于 Claude Code、Qoder、Trae**的标准 skill,补上公司 skill 库缺位的"方法论层"。
+> 把 superpowers 的"AI 怎么干活"工作方法论,沉淀为一个**同时适用于 Claude Code、Qoder、Trae**的标准 skill,补上你的 skill 库缺位的"方法论层"。
 
-本包是 [obra/superpowers](https://github.com/obra/superpowers)(MIT)+ 公司 `lina-*` 的中文说明 + 英文 `SKILL.md` 蒸馏版,与 grill-me / ponytail / openspec / Trellis 结构对齐(一包一 SKILL.md)。
+本包是 [obra/superpowers](https://github.com/obra/superpowers)(MIT) 的中文说明 + 英文 `SKILL.md` 蒸馏版,与 grill-me / ponytail / openspec / Trellis 结构对齐(一包一 SKILL.md)。
 
 ---
 
@@ -10,7 +10,7 @@
 
 superpowers(obra/superpowers)的本质不是某个框架教程,而是一套工程纪律:**动手前先澄清需求、写码前先拆计划、实现前先写测试、排查走系统化调试、完成前先跑验证**。
 
-摸底公司现有 skill 发现:大多是**框架知识层**(`lina-*`——告诉 AI"用什么"),但"怎么干"这套工作流是缺位的。本包就是来填这个坑的。
+很多团队的 skill 库只有**框架知识层**(告诉 AI"用什么"),"怎么干"这套工作流是缺位的。本包就是来填这个坑的。
 
 > 💡 **5 个纪律已合并进单个 `superpowers` skill**(`skills/superpowers/SKILL.md`,315 行,英文正文,省约 30% token);中文说明看本 README。
 
@@ -28,7 +28,7 @@ superpowers(obra/superpowers)的本质不是某个框架教程,而是一套工�
 
 **默认顺序**:`/superpowers` 开启后,每个任务依次走 brainstorming → writing-plans → test-driven-development →(遇问题)systematic-debugging → verification-before-completion。这是默认链,不是强制全跑——按任务挑对应的纪律用即可。
 
-> **不重造轮子**:本套是方法论层,与现有 `lina-*` 框架知识层互补——本套管"怎么干",`lina-*` 管"用什么"。
+> **不重造轮子**:本套是方法论层,与框架知识层互补——本套管"怎么干",框架 skill 管"用什么"。
 
 ---
 
@@ -92,8 +92,8 @@ cp skills/superpowers/SKILL.md <项目>/.claude/skills/superpowers/
 └──────────────────────────────────────────────┘
                     ↓ 调用 / 交叉引用
 ┌──────────────────────────────────────────────┐
-│  框架知识层(公司已有)=「用什么」             │
-│  lina-* · lina-redis · lina-rabbitmq · ...    │
+│  框架知识层(团队已有)=「用什么」             │
+│  your-framework-redis · your-framework-mq · ...        │
 └──────────────────────────────────────────────┘
 ```
 

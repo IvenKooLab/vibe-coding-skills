@@ -1,6 +1,6 @@
 # Skill 编写规范(Claude Code + Qoder 通用)
 
-> 适用于公司内部所有 AI 编程 skill。一套写法,同时吃下 Claude Code 与 Qoder(以及任何兼容 SKILL.md 格式的工具)。
+> 适用于所有 AI 编程 skill。一套写法,同时吃下 Claude Code 与 Qoder(以及任何兼容 SKILL.md 格式的工具)。
 >
 > 本规范沉淀自 superpowers(obra/superpowers)官方 `writing-skills` 元规范、agentskills.io 跨工具规格,以及中文社区版(superpowers-zh)对 Qoder 的适配实现。
 
@@ -158,12 +158,12 @@ superpowers 的灵魂是"**哪怕只有很小的可能性,也要先查有没有�
 **Claude Code** —— 追加到项目根 `CLAUDE.md`(用哨兵注释包裹,便于精确卸载):
 
 ```
-<!-- superpowers-sinosafe:begin -->
+<!-- superpowers-yourorg:begin -->
 … 核心规则 + 可用 skills 索引表 …
-<!-- superpowers-sinosafe:end -->
+<!-- superpowers-yourorg:end -->
 ```
 
-**Qoder** —— 独立文件 `.qoder/rules/superpowers-sinosafe.md`,frontmatter:
+**Qoder** —— 独立文件 `.qoder/rules/superpowers-yourorg.md`,frontmatter:
 
 ```yaml
 ---
@@ -192,20 +192,20 @@ Qoder rule 的三种触发模式:`always_on`(始终生效,引导用此)、`model
 
 ## 8. 与现有 skills 协作(分层模型)
 
-公司 skill 库分两层,**互补不重叠**:
+skill 库分两层,**互补不重叠**(以企业内部框架为例):
 
 | 层 | 管什么 | 代表 skill |
 |---|---|---|
 | **方法论层**(本套) | 怎么干(动手前澄清、完成前验证、TDD) | `superpowers`(单 skill,内含 brainstorming / writing-plans / test-driven-development / systematic-debugging / verification-before-completion 5 个纪律) |
-| **框架知识层**(已有) | 用什么(Lina 框架、中间件) | `lina-framework-base`、`lina-redis`、`lina-mybatis-plus`、`lina-rabbitmq`、`lina-sso` 等 |
+| **框架知识层**(已有) | 用什么(内部框架、中间件) | `your-framework-base`、`your-framework-redis`、`your-framework-mq` 等(占位示例) |
 
 **一键开关(总开关 skill)**:方法论层是一个单 skill `superpowers` + Claude Code 的 `/superpowers` 命令。用户说一句 `/superpowers`/「启用 superpowers」,本会话后续所有任务自动按 5 步流程执行,不必逐个触发。开关 skill 本身遵循同样的编写规范(description 只写"何时用")。
 
-**协作方式**:方法论 skill 在"何时用/协作"小节用 `[[skill-name]]` 交叉引用框架 skill。例:`superpowers` 的 brainstorming 纪律涉及框架时指向 `[[lina-framework-base]]`;systematic-debugging 纪律涉及中间件异常时指向 `[[lina-redis]]` / `[[lina-rabbitmq]]`。
+**协作方式**:方法论 skill 在"何时用/协作"小节用 `[[skill-name]]` 交叉引用框架 skill。例:`superpowers` 的 brainstorming 纪律涉及框架时指向 `[[your-framework-base]]`;systematic-debugging 纪律涉及中间件异常时指向对应的框架 skill。
 
 ### 与 OpenSpec 的红线
 
-公司同时引入 OpenSpec(规格层,管"做什么/契约/沉淀")。遵循大厂共识的权责隔离:
+若同时引入 OpenSpec(规格层,管"做什么/契约/沉淀")。遵循大厂共识的权责隔离:
 
 > **OpenSpec 管「契约与沉淀」,Superpowers(skill)管「流程与质量」,一件事只由一套主导,互不越界。**
 

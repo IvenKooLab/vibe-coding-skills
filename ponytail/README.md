@@ -1,6 +1,6 @@
 # Ponytail · 最懒的资深开发
 
-> *He says nothing. He writes one line. It works.* —— 把「公司里那个扎马尾、戴椭圆眼镜、比版本控制还资深的老法师」塞进你的 AI:你给他五十行,他看一眼,不说话,换成一行。
+> *He says nothing. He writes one line. It works.* —— 把「团队里那个扎马尾、戴椭圆眼镜、比版本控制还资深的老法师」塞进你的 AI:你给他五十行,他看一眼,不说话,换成一行。
 
 让 AI 像**最懒的资深开发**一样写码:**懒而不疏忽**。最好的代码是从没写出来的代码。
 

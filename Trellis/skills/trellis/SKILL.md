@@ -59,4 +59,4 @@ Do not start implementation until the user approves. (Same instinct as [[grill-m
 
 - Plan phase = [[trellis-brainstorm]] (shares DNA with [[grill-me]]). Verify phase = [[trellis-check]]. Multi-agent = [[trellis-channel]].
 - Sits **above** the methodology layer ([[superpowers]]: §brainstorming / §writing-plans / §test-driven-development): Trellis is the *persistence + orchestration* frame those skills run inside.
-- The spec layer is where company framework knowledge (`lina-*`) can be anchored for a given project — write the relevant `lina-*` conventions into `.trellis/spec/` once, and every session inherits them.
+- The spec layer is where internal framework knowledge can be anchored for a given project — write the relevant framework conventions into `.trellis/spec/` once, and every session inherits them.

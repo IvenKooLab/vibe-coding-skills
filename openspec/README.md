@@ -1,8 +1,8 @@
-# OpenSpec · 规格契约层 + Lina 框架知识中转
+# OpenSpec · 规格契约层 + 内部框架知识中转
 
-> AI 写码容易「各说各的」——上次会话拍板的需求,这次又得重讲一遍;或者你问「这个功能到底要干嘛」,三个人三个版本。OpenSpec 把**需求和契约沉淀进仓库**,让任何会话都对着**唯一可信基线**干活。同时,涉及公司 Lina 框架时,它像 superpowers 那样**一带多**,把你路由到对应的 `lina-*` skill。
+> AI 写码容易「各说各的」——上次会话拍板的需求,这次又得重讲一遍;或者你问「这个功能到底要干嘛」,三个人三个版本。OpenSpec 把**需求和契约沉淀进仓库**,让任何会话都对着**唯一可信基线**干活。同时,涉及企业内部框架时,它像 superpowers 那样**一带多**,把你路由到对应的框架 skill(示例 `your-framework-*`)。
 
-本包是 [Fission-AI/OpenSpec](https://github.com/Fission-AI/OpenSpec)(MIT)的核心工作流**蒸馏版** + 公司 `lina-*` 框架知识层的**中转索引**,中文说明 + 英文 `SKILL.md`,与 grill-me 同为最简单例(README + 单个 SKILL.md)。
+本包是 [Fission-AI/OpenSpec](https://github.com/Fission-AI/OpenSpec)(MIT)的核心工作流**蒸馏版** + 内部框架知识层的**中转索引**(占位示例),中文说明 + 英文 `SKILL.md`,与 grill-me 同为最简单例(README + 单个 SKILL.md)。
 
 ---
 
@@ -13,7 +13,7 @@
 | 层 | 管什么 | 解决什么 |
 |---|---|---|
 | **Part A · 规格契约层** | 做什么 / 契约 / 沉淀 | 需求反复重讲、跨会话/跨人对不上口径、AI 偏离已定契约 |
-| **Part B · 框架知识中转** | 涉及 Lina 框架时,路由到对的 `lina-*` | 不用自己推「用哪个 starter、怎么配」,一个总入口分流到 12 个模块 |
+| **Part B · 框架知识中转** | 涉及内部框架时,路由到对的 `your-framework-*` | 不用自己推「用哪个 starter、怎么配」,一个总入口分流到 若干框架模块 |
 
 > **红线(记死这条)**:OpenSpec 管「做什么 + 契约」,Superpowers 方法论([[superpowers]] 的 brainstorming / writing-plans / test-driven-development 等纪律)管「怎么做 + 质量」。一件事只由一套主导,互不越界。skill 只读 spec、不修改需求基线。**轻量项目可以完全不引入 OpenSpec**,只用方法论层。
 
@@ -53,83 +53,33 @@
 
 ---
 
-## Part B:Lina 框架知识中转
+## Part B:内部框架知识中转
 
-涉及公司 Lina 框架时(新建微服务、加中间件、数据访问、缓存、消息、权限、定时任务、监控、模板),**别在这里重新推 Lina 怎么用**——路由到对的 `lina-*` skill,照它的规范走。本 skill 是总机,`lina-*` 是分机。(单一数据源——它们的内容在公司 skill 库里,这里不复制。)
+涉及内部框架时,新建微服务、加中间件、数据访问、缓存、消息、权限、定时任务、监控、模板),**别在这里重新推框架怎么用**——路由到对的 `your-framework-*` skill,照它的规范走。本 skill 是总机,框架 skill 是分机。(单一数据源——它们的内容在你的 skill 库里,这里不复制。)
 
-### 12 个 `lina-*` 速查表
+### 框架速查表（占位示例）
 
-**基础**
+公开版只保留路由模式示意;把 `your-framework-*` 换成你自己的框架 skill 即可:
 
-| Skill | 一句话 | 触发词 |
+| 路由到 | 管什么 | 典型触发 |
 |---|---|---|
-| `lina-framework-base` | 框架基础与项目脚手架 | parent POM、新建项目、`lina-*-starter` |
-
-**数据访问**
-
-| Skill | 一句话 | 触发词 |
-|---|---|---|
-| `lina-mybatis` | MyBatis 数据库访问 | Mapper、XML mapper、PageHelper |
-| `lina-mybatis-plus` | MyBatis-Plus 增强 ORM | `@MultiId`、联合主键、`LinaServiceImpl` |
-| `lina-datasource-dynamic` | 动态多数据源切换 | `@MultipleDataSource`、多数据源 |
-
-**缓存**
-
-| Skill | 一句话 | 触发词 |
-|---|---|---|
-| `lina-redis` | Redis 缓存与分布式锁 | `RedisService`、分布式锁、多集群 |
-
-**消息**
-
-| Skill | 一句话 | 触发词 |
-|---|---|---|
-| `lina-rabbitmq` | RabbitMQ 消息收发 | 多连接、producer/consumer |
-| `lina-rocketmq` | RocketMQ 消息中间件 | 事务消息、延时/顺序消息 |
-
-**模板**
-
-| Skill | 一句话 | 触发词 |
-|---|---|---|
-| `lina-freemarker` | 模板引擎与文档生成 | FTL、模板渲染 |
-
-**权限 / 会话**
-
-| Skill | 一句话 | 触发词 |
-|---|---|---|
-| `lina-sso` | CAS 单点登录集成 | CAS、session 共享、302 |
-| `lina-um` | 统一用户权限管理 | 用户/角色/菜单/机构、Dubbo |
-
-**运维**
-
-| Skill | 一句话 | 触发词 |
-|---|---|---|
-| `lina-prometheus` | 监控指标暴露 | actuator、metrics、scraping |
-| `lina-xxl-job` | 分布式任务调度 | JobHandler、cron、定时任务 |
-
-### 怎么路由
-
-1. 读需求。
-2. 看它碰哪些 Lina 模块(按触发词匹配上表)。
-3. 加载对应 `lina-*` 正文,照它的规范写码。
-4. 涉及多模块(如「加一个带缓存、定时同步的数据库任务」= `lina-mybatis-plus` + `lina-redis` + `lina-xxl-job`)→ 逐个加载,别把各自的约定揉成一坨。
-
-> 一个都不沾的任务,大概率不是 Lina 框架任务——单独用方法论层即可。
-
----
+| `your-framework-base` | 脚手架/多环境配置 | 新建项目 |
+| `your-framework-cache` | 缓存与分布式锁 | cache、lock |
+| `your-framework-mq` | 消息队列 | 收发消息 |
 
 ## 何时用 / 何时不用
 
 **用**:
 
 - 需求要跨会话存活,或多人/多 agent 必须对契约达成一致。
-- 工作涉及 Lina 框架,需要对应模块的规范。
+- 工作涉及内部框架,需要对应模块的规范。
 - 触发:对 agent 说 `/openspec`、「启用 openspec」「走 spec-driven」「写规格」「提个 proposal」。
 
 **不用**:
 
 - 轻量、单人、短期、不需要跨会话记忆——方法论层 + [[ponytail]] 够了,**别交用不上的规格税**。
 - 正在排查具体 bug——用 [[superpowers]] 的 systematic-debugging 纪律(可以**读** spec 理解预期行为,但别在 bug 中途跑 propose 循环)。
-- 任务不碰任何 Lina 模块——Part B 无可路由;若你想要契约留痕,Part A 仍可单独用。
+- 任务不碰任何内部框架模块——Part B 无可路由;若你想要契约留痕,Part A 仍可单独用。
 
 ---
 
@@ -161,9 +111,9 @@ cp SKILL.md <项目>/.claude/skills/openspec/
 
 启动会话,给一个还没拍板的需求(比如「给报表模块加导出,要支持多数据源切换」),说 `/openspec`。
 
-✅ **预期**:AI 先 **explore**(读现有 spec/代码,摸清现状);再 **propose** 出四件套(`proposal.md` 明确范围与决策、`specs/` 写 delta、必要时 `design.md`、`tasks.md` 拆成可勾选清单),**等你评审才动手**;实现走 Apply;收尾 Archive 把 delta 回写 `openspec/specs/`。涉及 Lina 框架时,它会**路由到对应 `lina-*` skill**(如多数据源 → `lina-datasource-dynamic`),而不是自己凭空写配置。
+✅ **预期**:AI 先 **explore**(读现有 spec/代码,摸清现状);再 **propose** 出四件套(`proposal.md` 明确范围与决策、`specs/` 写 delta、必要时 `design.md`、`tasks.md` 拆成可勾选清单),**等你评审才动手**;实现走 Apply;收尾 Archive 把 delta 回写 `openspec/specs/`。涉及内部框架时,它会**路由到对应 `your-framework-*` skill**(如多数据源 → `your-framework-*`),而不是自己凭空写配置。
 
-❌ **反例**:AI 没等你评审 proposal 就开始写码、或把 `lina-*` 的配置内容抄进对话而不是引用 skill、或把 OpenSpec 和 Trellis 混为一谈——都说明没生效。
+❌ **反例**:AI 没等你评审 proposal 就开始写码、或把 `your-framework-*` 的配置内容抄进对话而不是引用 skill、或把 OpenSpec 和 Trellis 混为一谈——都说明没生效。
 
 ---
 
@@ -173,7 +123,7 @@ cp SKILL.md <项目>/.claude/skills/openspec/
 
 - **与 [[trellis]] 并列**(都偏工程框架层):Trellis 管 spec/task/memory 的**持久化 + 多 agent 编排**;OpenSpec 管**需求契约的提案 → 归档**。重项目可叠加——OpenSpec 谈契约,Trellis 保契约 + 任务 + 记忆跨 agent 一致。
 - **与 superpowers 方法论层正交**:OpenSpec = 做什么/契约;[[superpowers]] 的 brainstorming/writing-plans/test-driven-development/verification-before-completion 纪律 = 怎么做/质量。红线见上文。
-- **`lina-*` 是「用什么」**(框架知识层,公司已有),本 skill 的 Part B 是**去那里的路由器**——像 superpowers 一带多那样,一个总入口分流。
+- **`your-framework-*` 是「用什么」**(框架知识层,团队已有),本 skill 的 Part B 是**去那里的路由器**——像 superpowers 一带多那样,一个总入口分流。
 
 ---
 
@@ -181,4 +131,4 @@ cp SKILL.md <项目>/.claude/skills/openspec/
 
 - 上游:[Fission-AI/OpenSpec](https://github.com/Fission-AI/OpenSpec)(**MIT**)
 - 本包 Part A 为其 4 阶段工作流(explore/propose/apply/archive)+ 四件套(proposal/specs/design/tasks)的**方法论蒸馏摘录与中文说明**,未整体搬运其 CLI/源码;若 `npm install` 使用上游完整工具,请遵守 MIT 条款。
-- Part B 的 `lina-*` 随公司 skill 库(本机 `~/.zcode/skills/lina-*`),本包只做中转索引,不复制内容。
+- Part B 的 `your-framework-*` 随你的 skill 库(本机 `~/.zcode/skills/` 下),本包只做中转索引,不复制内容。
