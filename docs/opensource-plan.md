@@ -50,9 +50,12 @@
 掘金/V2EX（"我把 6 个 AI 编码方法论 skill 蒸馏成了中文合集"）+ awesome-claude-code
 类列表投稿；英文侧暂缓（上游就是英文，无增量）。
 
-## 六、执行顺序建议
+## 六、执行顺序（决策已定，2026-09-18 用户拍板）
 
-1. 用户确认剥离清单（尤其 lina 泛化程度：完全删除 vs 泛化保留）
-2. 查 grill-me / Trellis 上游 license
-3. 剥离 + README 改写 + 本仓先保持 Gitee 私有，推一个 `public-ready` 分支
-4. 家里：GitHub 建仓 + 推 public-ready 分支为 main
+- ✅ **剥离方式：泛化保留**——`lina-*` 改 `your-framework-*` / `myorg-redis` 类占位写法，
+  保留"方法论层 × 框架知识层"两层协作的教学价值（本合集相对上游原版的差异化之一）
+- ✅ **时机：排后**——优先级队列：loci v0.6 发版 → nacos2-mcp GitHub 建仓 →
+  loci 发布帖三连 → **本仓公开化** → 归园 Godot 原型
+- 待办（捡起时按序）：① 查 grill-me / Trellis 上游 license → ② 按 §二 清单剥离
+  （ponytail README 的"公司"改"团队"、sinosafe 标记改占位符）→ ③ §四 改写 README →
+  ④ 推 `public-ready` 分支（本仓保持 Gitee 私有）→ ⑤ 家里 GitHub 建仓 `vibe-coding-skills`
